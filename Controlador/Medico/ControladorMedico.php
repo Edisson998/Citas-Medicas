@@ -1,5 +1,5 @@
 <?php include "../../Conexion/conexion.php";
-header("Content-Type: application/json"); //en cualquier lado lo puedes poner, a la final es para que se muestre el json còmo objeto
+header("Content-Type: application/json"); // muestra el json còmo objeto
 
 $Obj = new Conexion();
 $pdo = $Obj->Conectar();
@@ -7,8 +7,8 @@ $pdo = $Obj->Conectar();
 
 if ($_POST) {
 
-    // ahora si quieres editar actualizar etc
-    //tambien puedes poner esta validacion, que indica que debe existe el la variable si o si
+    
+    //verificamos que la accion exista
     if (isset($_POST['accion'])) {
         if ($_POST['accion'] == "insertar") {
             $nombres = $_POST['nombres'];
@@ -119,7 +119,7 @@ if ($_POST) {
 
            
         } else {
-            //esto tambien es opcional, ya depende de ti còmo controlas el error
+            //mostramos en formato json cuando no exista ninguna accion
             $response["success"] = false;
             $response['mensaje'] = "no existe la accion insertar, actualizar o eliminar"; //es opcional esto
 

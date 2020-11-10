@@ -109,7 +109,7 @@ include '../../plantilla/header.php';
                         "data": "ESP_ESTADO"
                     },
                     {
-                        "defaultContent": " <button type='button' data-toggle='modal' data-target='#EditarMedicoModal' class='edit btn btn-info btn-sm ' title='Editar'><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Editar </button>  <button type='button' data-toggle='modal' data-target='#EliminarMedicoModal'  class='eliminar btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash' aria-hidden='true'></i> Eliminar  </button> "
+                        "defaultContent": " <button type='button' data-toggle='modal' data-target='#EditarEspecialidadModal' class='edit btn btn-info btn-sm ' title='Editar'><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Editar </button>  <button type='button' data-toggle='modal' data-target='#EliminarEspecialidadModal'  class='eliminar btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash' aria-hidden='true'></i> Eliminar  </button> "
                    
                     }
 
@@ -136,14 +136,15 @@ include '../../plantilla/header.php';
             //Llamamos a la funcion grabar
 
 
-            $("#btnGuardarMedico").on("click", function() {
-                input = $(".nombres").val();
-                input2 = $(".P_Apellido").val();
-                if (input.length == 0 || input2.length == 0) {
+            $("#btnGuardarEspecialidad").on("click", function() {
+                input = $(".especialidad").val();
+                
+                if (input.length == 0 ) {
                     Swal.fire({
                         title: 'Oops',
                         icon: 'warning',
-                        text: 'Todos los campos son requeridos',
+                        text: 'Ingrese una especialidad',
+                        className: "red-bg",
                         showCloseButton: true
                         
                     })
@@ -153,14 +154,14 @@ include '../../plantilla/header.php';
                 }
             })
 
-            $("#btnEditarMedico").on("click", function(e) {
+            $("#btnEditarEspecialidad").on("click", function(e) {
                 e.preventDefault();
                 actualizar();
                 $('.dataTable').DataTable().ajax.reload(null, false);
 
             })
 
-            $("#btnEliminarMedico").on("click", function() {
+            $("#btnEliminarEspecialidad").on("click", function() {
 
                 eliminar();
 
@@ -180,18 +181,8 @@ include '../../plantilla/header.php';
 
                 //Capturamos los valores de la base en cada campo de texto del modal editar
 
-                let idmedico = $("#EidMedico").val(data.MED_ID),
-                    nombres = $("#Enombres").val(data.MED_NOMBRES),
-                    P_Apellido = $("#EP_Apellido").val(data.MED_P_APELLIDO),
-                    S_Apellido = $("#ES_Apellido").val(data.MED_S_APELLIDO),
-                    genero = $("#genero_val ").val(data.MED_GENERO).html(data.MED_GENERO),
-                    especialidad = $("#E_especialidad").val(data.ESP_ID).html(data.EP_DESCRIPCION),
-                    t_dni = $("#E_t_dni ").val(data.MED_TIPO_DNI).html(data.MED_TIPO_DNI),
-                    dni = $("#Edni").val(data.MED_DNI),
-                    f_naci = $("#Ef_naci").val(data.MED_FECHA_NAC),
-                    correo = $("#Ecorreo").val(data.MED_CORREO),
-                    telef = $("#Etelef").val(data.MED_TELEFONO),
-                    dir = $("#Edir").val(data.MED_DIRECCION);
+                let idesp = $("#idEsp").val(data.ESP_ID),
+                    esp = $("#editarEspecialidad").val(data.EP_DESCRIPCION)                   
 
             });
         }
@@ -200,21 +191,21 @@ include '../../plantilla/header.php';
             $(tbody).on('click', 'button.eliminar', function() {
                 var data = datatableInstance.row($(this).parents('tr')).data();
                 // console.log(data);             
-                let idmedico = $("#formEliminarMedico #idMedicoEl").val(data.MED_ID),
-                    nombres = $("#Elnombres").val(data.MED_NOMBRES);
+                let idesp = $("#formEliminarEspecialidad #idEspEl").val(data.ESP_ID)
+                    
 
             });
         }
         //Funcion para verificar que la variable rs retorne true
         let grabar = function() {
-            let url = "../../Controlador/Medico/ControladorMedico.php";
-            let dataform = $("#formMedico").serialize();
+            let url = "../../Controlador/Especialidades/ControladorEspecialidad.php";
+            let dataform = $("#formEspecialidad").serialize();
             dataform = "accion=insertar&" + dataform;
             $.post(url, dataform).done((rs) => {
                 console.log(rs)
                 if (rs.success == true) {                 
                     // alert("Registro guardado")                   
-                    $("#AgregarMedicoModal").modal("hide");
+                    $("#AgregarEspecialidadModal").modal("hide");
                     Swal.fire(
                         'Correcto!',
                         'Registro guardado!',
@@ -222,8 +213,6 @@ include '../../plantilla/header.php';
                     );                   
                     $(".input").val("");
                     $('.dataTable').DataTable().ajax.reload(null, false);
-
-
                 } else {
                     alert("Ocurrio un error")
                     console.log(rs.mensaje)
@@ -232,24 +221,22 @@ include '../../plantilla/header.php';
         }
 
         let actualizar = function() {
-            let urlE = "../../Controlador/Medico/ControladorMedico.php";
-            let dataformEd = $("#formEditarMedico").serialize();
+            let urlE = "../../Controlador/Especialidades/ControladorEspecialidad.php";
+            let dataformEd = $("#formEditarEspecialidad").serialize();
             dataformEd = "accion=actualizar&" + dataformEd;
             $.post(urlE, dataformEd).done((rsu) => {
                 console.log(rsu)
                 if (rsu.success == true) {
-                   // alert("Registro Modificado")
-                  
-                    $("#EditarMedicoModal").modal('hide');
+                   // alert("Registro Modificado")                  
+                    $("#EditarEspecialidadModal").modal('hide');
                     Swal.fire(
                         'Correcto!',
                         'Registro Modificado!',
                         'success'
                     ); 
                     //location.reload();
-                   
+                    $('.dataTable').DataTable().ajax.reload(null, false);
                     console.log(rsu.success)
-
                 } else {
                     console.log(rsu.mensaje)
                 }
@@ -257,18 +244,18 @@ include '../../plantilla/header.php';
         }
 
         let eliminar = function() {
-            let urlEl = "../../Controlador/Medico/ControladorMedico.php";
-            let dataformEl = $("#formEliminarMedico").serialize();
+            let urlEl = "../../Controlador/Especialidades/ControladorEspecialidad.php";
+            let dataformEl = $("#formEliminarEspecialidad").serialize();
             dataformEl = "accion=eliminar&" + dataformEl;
             $.post(urlEl, dataformEl).done((rse) => {
                 console.log(rse)
                 if (rse.success == true) {
                     console.log(rse.success)
                    // alert("Registro Elimiando")
-                    $("#EliminarMedicoModal").modal("hide");
+                    $("#EliminarEspecialidadModal").modal("hide");
                     Swal.fire(
                         'Correcto!',
-                        'Registro Eliminado!',
+                        'Registro Eliminado',
                         'success'
                     ); 
                     $('.dataTable').DataTable().ajax.reload(null, false);
