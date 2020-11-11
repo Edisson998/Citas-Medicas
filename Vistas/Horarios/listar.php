@@ -13,12 +13,9 @@ include '../../plantilla/header.php';
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap.min.css" rel="stylesheet">
-    
-    
-    
     <link href="../../sweetalert/sweetalert2.min.css" rel="stylesheet">
 
-    <title>Especialidades</title>
+    <title>Horarios</title>
 
     <style>
         table th {
@@ -38,7 +35,7 @@ include '../../plantilla/header.php';
 <body>
     <div class="page-title">
         <div class="title_left">
-            <h3 style="padding-left: 10px;">Lista de Especialidades</h3>
+            <h3 style="padding-left: 10px;">Lista de Horarios</h3>
         </div>
     </div>
 
@@ -51,7 +48,7 @@ include '../../plantilla/header.php';
                 <?php include 'editar.php'; ?>
                 <?php include 'eliminar.php'; ?>
 
-                <a data-toggle="modal" data-target="#AgregarEspecialidadModal" class="btn btn-success btn-sm" style="color: white;"> <i class="fa fa-plus"></i> Agregar Especialidades</a>
+                <a data-toggle="modal" data-target="#AgregarHorariodModal" class="btn btn-success btn-sm" style="color: white;"> <i class="fa fa-plus"></i> Agregar Horario</a>
 
                 <div class="clearfix"></div>
             </div>
@@ -77,8 +74,11 @@ include '../../plantilla/header.php';
 
                                 <thead>
                                     <tr>                                        
-                                        <th scope="col">Descripción</th>                                    
-                                        <th scope="col">Estado</th>
+                                        <th scope="col">Médico</th>      
+                                        <th scope="col">Fecha</th>                               
+                                        <th scope="col">Hora de Ingreso</th> 
+                                        <th scope="col">Hora de Salida</th> 
+                                        <th scope="col">Estado</th>                                       
                                         <th scope="col" data-priority>Acciones</th>
                                     </tr>
                                 </thead>
@@ -99,20 +99,29 @@ include '../../plantilla/header.php';
             let datatableInstance = $('#tabla').DataTable({
                 // cargamos los datos Json con ajax 
                 "ajax": {
-                    "url": "../../Controlador/Especialidades/listar.php",
+                    "url": "../../Controlador/Horarios/listar.php",
                 },
                 "columnDefs": [
         {"className": "dt-center", "targets": "_all"}
       ],
                 "columns": [
                     {
-                        "data": "EP_DESCRIPCION"
+                        "data": "MED_NOMBRES"
                     },
                     {
-                        "data": "ESP_ESTADO"
+                        "data": "HOR_DIAS"
                     },
                     {
-                        "defaultContent": " <button type='button' data-toggle='modal' data-target='#EditarEspecialidadModal' class='edit btn btn-info btn-sm ' title='Editar'><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Editar </button>  <button type='button' data-toggle='modal' data-target='#EliminarEspecialidadModal'  class='eliminar btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash' aria-hidden='true'></i> Eliminar  </button> "
+                        "data": "HOR_INGRESO"
+                    },
+                    {
+                        "data": "HOR_SALIDA"
+                    },
+                    {
+                        "data": "HOR_ESTADO"
+                    },
+                    {
+                        "defaultContent": " <button type='button' data-toggle='modal' data-target='#EditarHorariodModal' class='edit btn btn-info btn-sm ' title='Editar'><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Editar </button>  <button type='button' data-toggle='modal' data-target='#EliminarHorarioModal'  class='eliminar btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash' aria-hidden='true'></i> Eliminar  </button> "
                    
                     }
 
@@ -139,14 +148,17 @@ include '../../plantilla/header.php';
             //Llamamos a la funcion grabar
 
 
-            $("#btnGuardarEspecialidad").on("click", function() {
-                input = $(".especialidad").val();
+            $("#btnGuardarHorario").on("click", function() {
+                input = $(".nmedico").val();
+                input2 = $(".fecha").val();
+                input3 = $(".hingreso").val();
+                input4 = $(".hsalida").val();
                 
-                if (input.length == 0 ) {
+                if (input.length == 0 || input2.length == 0 || input3.length == 0 || input4.length == 0 ) {
                     Swal.fire({
                         title: 'Oops',
                         icon: 'warning',
-                        text: 'Ingrese una especialidad',
+                        text: 'Todos los campos son requeridos',
                         className: "red-bg",
                         showCloseButton: true
                         
@@ -157,14 +169,14 @@ include '../../plantilla/header.php';
                 }
             })
 
-            $("#btnEditarEspecialidad").on("click", function(e) {
+            $("#btnEditarHorario").on("click", function(e) {
                 e.preventDefault();
                 actualizar();
                 $('.dataTable').DataTable().ajax.reload(null, false);
 
             })
 
-            $("#btnEliminarEspecialidad").on("click", function() {
+            $("#btnEliminarHorario").on("click", function() {
 
                 eliminar();
 
@@ -184,8 +196,11 @@ include '../../plantilla/header.php';
 
                 //Capturamos los valores de la base en cada campo de texto del modal editar
 
-                let idesp = $("#idEsp").val(data.ESP_ID),
-                    esp = $("#editarEspecialidad").val(data.EP_DESCRIPCION)                   
+                let idHor = $("#idHor").val(data.HOR_ID),                  
+                    nmedico= $("#neMedico").val(data.MED_ID).html(data.MED_NOMBRES),    
+                    dias = $("#efecha").val(data.HOR_DIAS),
+                    ingreso = $("#ehingreso").val(data.HOR_INGRESO),
+                    salida = $("#ehsalida").val(data.HOR_SALIDA)            
 
             });
         }
@@ -194,21 +209,21 @@ include '../../plantilla/header.php';
             $(tbody).on('click', 'button.eliminar', function() {
                 var data = datatableInstance.row($(this).parents('tr')).data();
                 // console.log(data);             
-                let idesp = $("#formEliminarEspecialidad #idEspEl").val(data.ESP_ID)
+                let idesp = $("#formEliminarHorario #idHorEl").val(data.HOR_ID)
                     
 
             });
         }
         //Funcion para verificar que la variable rs retorne true
         let grabar = function() {
-            let url = "../../Controlador/Especialidades/ControladorEspecialidad.php";
-            let dataform = $("#formEspecialidad").serialize();
+            let url = "../../Controlador/Horarios/ControladorHorarios.php";
+            let dataform = $("#formHorario").serialize();
             dataform = "accion=insertar&" + dataform;
             $.post(url, dataform).done((rs) => {
                 console.log(rs)
                 if (rs.success == true) {                 
                     // alert("Registro guardado")                   
-                    $("#AgregarEspecialidadModal").modal("hide");
+                    $("#AgregarHorariodModal").modal("hide");
                     Swal.fire(
                         'Correcto!',
                         'Registro guardado!',
@@ -224,14 +239,14 @@ include '../../plantilla/header.php';
         }
 
         let actualizar = function() {
-            let urlE = "../../Controlador/Especialidades/ControladorEspecialidad.php";
-            let dataformEd = $("#formEditarEspecialidad").serialize();
+            let urlE = "../../Controlador/Horarios/ControladorHorarios.php";
+            let dataformEd = $("#formEditarHorario").serialize();
             dataformEd = "accion=actualizar&" + dataformEd;
             $.post(urlE, dataformEd).done((rsu) => {
                 console.log(rsu)
                 if (rsu.success == true) {
                    // alert("Registro Modificado")                  
-                    $("#EditarEspecialidadModal").modal('hide');
+                    $("#EditarHorariodModal").modal('hide');
                     Swal.fire(
                         'Correcto!',
                         'Registro Modificado!',
@@ -247,15 +262,15 @@ include '../../plantilla/header.php';
         }
 
         let eliminar = function() {
-            let urlEl = "../../Controlador/Especialidades/ControladorEspecialidad.php";
-            let dataformEl = $("#formEliminarEspecialidad").serialize();
+            let urlEl = "../../Controlador/Horarios/ControladorHorarios.php";
+            let dataformEl = $("#formEliminarHorario").serialize();
             dataformEl = "accion=eliminar&" + dataformEl;
             $.post(urlEl, dataformEl).done((rse) => {
                 console.log(rse)
                 if (rse.success == true) {
                     console.log(rse.success)
                    // alert("Registro Elimiando")
-                    $("#EliminarEspecialidadModal").modal("hide");
+                    $("#EliminarHorarioModal").modal("hide");
                     Swal.fire(
                         'Correcto!',
                         'Registro Eliminado',

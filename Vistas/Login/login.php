@@ -17,15 +17,10 @@
   <form class="login" id="formlogin" action="../../Controlador/Login/login.php" method="post" name="login">
     <h2>Centro Médico</h2>
     <img src="../../img/icono.svg">
-    <input type="text" id="usuario" name="usuario" placeholder="Usuario" class="bordes" autofocus />
+    <input type="text" id="usuario" name="usuario" placeholder="Correo Electrónico" class="bordes" autofocus />
     <input type="password" id="password" name="password" placeholder="Contraseña" class="bordes" />
-    <input type="submit" id="btningresar" value="Ingresar"></input>
-    <?php  if(!empty($errores)): ?>
-          <ul>
-          <span class="badge badge-pill badge-danger"><?php echo $errores; ?></span>
-          </ul>
-        <?php  endif; ?>
-  </form>
+    <input type="submit" id="btningresar"  value="Ingresar" ></input>
+     </form>
 
   <script src="../../jquery/jquery-3.5.1.min.js"></script>
   

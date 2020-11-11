@@ -33,6 +33,7 @@
   <link rel="icon" type="image/x-svg" href="../../img/icono.svg">
 
   <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
+  
 
 </head>
 
@@ -111,12 +112,16 @@ if ($usuario == "") {
                   </div>
                   <div class="menu_section">
                     <h3>Mantenimientos</h3>
+
+
+
                     <ul class="nav side-menu">
                       <li><a><i class="fa fa-cogs"></i>Ajustes<span class="fa fa-chevron-down"></span></a>
+                      
                         <ul class="nav child_menu">
                           <li><a href="../../Vistas/Medicos/listar.php">Médicos</a></li>
                           <li><a href="../../Vistas/Especialidades/listar.php">Especialidades</a></li>
-                          <li><a href="project_detail.html">Project Detail</a></li>
+                          <li><a href="../../Vistas/Horarios/listar.php">Horarios</a></li>
                           <li><a href="contacts.html">Contacts</a></li>
                           <li><a href="profile.html">Profile</a></li>
                         </ul>

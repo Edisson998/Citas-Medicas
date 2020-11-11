@@ -11,17 +11,20 @@ if ($_POST) {
     //verificamos que la accion exista
     if (isset($_POST['accion'])) {
         if ($_POST['accion'] == "insertar") {
-            
-            $nombreEsp= $_POST['especialidad'];         
-            $estadoEsp = 'A';
-            $c_registroEsp =  date('Y-m-d');
-           
-            $sql = "INSERT INTO tbl_especialidades (EP_DESCRIPCION,ESP_ESTADO,ESP_CREACION_REGISTRO) VALUES (:nombreEsp,:estadoEsp,:c_registroEsp)";
+            $nombres = $_POST['nmedico'];
+            $fecha = $_POST['fecha'];
+            $ingreso = $_POST['hingreso']; 
+            $salida = $_POST['hsalida'];          
+            $estado = 'A';                
+
+            $sql = "INSERT INTO tbl_horario (MED_ID, HOR_DIAS, HOR_INGRESO, HOR_SALIDA, HOR_ESTADO) VALUES (:nombres, :fecha, :ingreso, :salida, :estado)";
             $query = $pdo->prepare($sql);
-            //BINDPARAM Vincula un parámetro al nombre de variable especificado           
-            $query->bindParam(':nombreEsp', $nombreEsp, PDO::PARAM_STR);          
-            $query->bindParam(':estadoEsp', $estadoEsp, PDO::PARAM_STR_CHAR);
-            $query->bindParam(':c_registroEsp', $c_registroEsp, PDO::PARAM_STMT);
+            //BINDPARAM Vincula un parámetro al nombre de variable especificado
+            $query->bindParam(':nombres', $nombres, PDO::PARAM_INT);
+            $query->bindParam(':fecha', $fecha, PDO::PARAM_STMT);
+            $query->bindParam(':ingreso', $ingreso, PDO::PARAM_STR);
+            $query->bindParam(':salida', $salida, PDO::PARAM_STR);
+            $query->bindParam(':estado', $estado, PDO::PARAM_STR_CHAR);           
             $rs = $query->execute();
 
             if ($rs) {
@@ -35,13 +38,20 @@ if ($_POST) {
             exit;
         } elseif ($_POST['accion'] == "actualizar") {
 
-            $codigoesp = $_POST['idEsp'];
-            $esp = $_POST['editarEspecialidad'];
-           
+            $codigo = $_POST['idHor'];
+            $nemedico = $_POST['nemedico'];
+            $efecha = $_POST['efecha'];
+            $ehingreso = $_POST['ehingreso'];
+            $ehsalida = $_POST['ehsalida'];
+            
 
-            $sqlu = "UPDATE tbl_especialidades SET EP_DESCRIPCION = :esp WHERE ESP_ID = '$codigoesp' ";
-            $queryu = $pdo->prepare($sqlu);           
-            $queryu->bindParam(':esp', $esp, PDO::PARAM_STR);           
+            // "UPDATE tbl_medico SET ESP_ID = '$especialidad', MED_NOMBRES = '$nombres', MED_P_APELLIDO = '$P_Apellido', MED_S_APELLIDO = ' $S_Apellido', MED_GENERO = '$genero', MED_FECHA_NAC = '$f_naci', MED_DIRECCION = '$dir',  MED_CORREO = '$correo', MED_TELEFONO = '$telef', MED_TIPO_DNI = ' $t_dni', MED_DNI = ' $dni' WHERE MED_ID = '$codigo' 
+            $sqlu = "UPDATE tbl_horario SET MED_ID = :nemedico, HOR_DIAS = :efecha, HOR_INGRESO = :ehingreso, HOR_SALIDA = :ehsalida WHERE HOR_ID = '$codigo' ";
+            $queryu = $pdo->prepare($sqlu);
+            $queryu->bindParam(':nemedico', $nemedico, PDO::PARAM_INT);
+            $queryu->bindParam(':efecha', $efecha, PDO::PARAM_STR);
+            $queryu->bindParam(':ehingreso', $ehingreso, PDO::PARAM_STR);
+            $queryu->bindParam(':ehsalida', $ehsalida, PDO::PARAM_STR);
             $rsu = $queryu->execute();
 
             if ($rsu) {
@@ -57,8 +67,8 @@ if ($_POST) {
             exit;
         } elseif ($_POST['accion'] == "eliminar") {
 
-            $codigoEspEl = $_POST['idEspEl'];
-            $sqle = "UPDATE tbl_especialidades SET ESP_ESTADO = 'I' where ESP_ID = '$codigoEspEl'";
+            $codigo = $_POST['idHorEl'];
+            $sqle = "UPDATE tbl_horario SET HOR_ESTADO = 'I' where HOR_ID = '$codigo'";
             $querye = $pdo->prepare($sqle);
             $rse = $querye->execute();
 
