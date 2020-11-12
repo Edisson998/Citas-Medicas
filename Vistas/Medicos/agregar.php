@@ -5,30 +5,29 @@ $con = mysqli_connect('localhost', 'root', '', 'citasmedicas');
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-user-md" aria-hidden="true"></i> &nbsp; Agregar Médico</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-user-md" aria-hidden="true"></i> Agregar Médico</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form  novalidate enctype="multipart/form-data" id="formMedico" method="POST" action="../../Controlador/Medico/ControladorMedico.php">
+                <form novalidate enctype="multipart/form-data" id="formMedico" method="POST">
                     <div class="form-row">
-                         <input type="hidden" class="form-control"  id="idMedico" name="idMedico" >                           
-                       
+
                         <div class="form-group col-md-6">
                             <label for="nombres">Nombres</label>
-                            <input type="text" class="form-control nombres input" id="nombres" name="nombres" placeholder="Ej: Juan " required>
-                            
+                            <input type="text" class="form-control nombres input" id="nombres" name="nombres" placeholder="Ejemplo: Juan " >
+
                         </div>
                         <div class="form-group col-md-6">
                             <label for="P_Apellido">Primer Apellido</label>
-                            <input type="text" class="form-control P_Apellido input" id="P_Apellido" name="P_Apellido" placeholder="Ej: Castro" required>
+                            <input type="text" class="form-control P_Apellido input" id="P_Apellido" name="P_Apellido" placeholder="Ejemplo: Castro" >
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="S_Apellido">Segundo Apellido</label>
-                            <input type="text" class="form-control input" id="S_Apellido" name="S_Apellido" placeholder="Ej: Villareal" required>
+                            <input type="text" class="form-control input" id="S_Apellido" name="S_Apellido" placeholder="Ejemplo: Villareal" >
                         </div>
                         <div class="form-group col-md-6">
                             <label for="genero">Género</label>
@@ -45,22 +44,22 @@ $con = mysqli_connect('localhost', 'root', '', 'citasmedicas');
                         <div class="form-group col-md-6">
 
                             <label for="especialidad">Especialidad</label>
-                            
-                            <select class="form-control"  id="especialidad" name="especialidad">                                
-                                <option selected  id="Especialidad" value="" >Seleccione una opcion</option>
+
+                            <select class="form-control" id="especialidad" name="especialidad">
+                                <option selected id="Especialidad" value="">Seleccione una opcion</option>
                                 <?php $q = "SELECT ESP_ID, EP_DESCRIPCION FROM tbl_especialidades";
                                 $que = $con->query($q);
                                 foreach ($que  as $val) { ?>
                                     <option value="<?php echo $val['ESP_ID'] ?>"><?php echo $val['EP_DESCRIPCION']  ?> </option>
-                               <?php }  ?> 
-                               
+                                <?php }  ?>
+
                             </select>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="t_dni">Tipo de Documento</label>
                             <select id="t_dni" name="t_dni" class="form-control input">
-                                <option selected id="T_dni"  value="" >Seleccione una opción</option>
+                                <option selected id="T_dni" value="">Seleccione una opción</option>
                                 <option value="C">Cédula</option>
                                 <option value="R">RUC</option>
                                 <option value="P">Pasaporte</option>
@@ -72,7 +71,7 @@ $con = mysqli_connect('localhost', 'root', '', 'citasmedicas');
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="dni">Documento de Identidad</label>
-                            <input type="text" class="form-control input" maxlength="13" id="dni" name="dni" placeholder="Ej: 1712345678" required>
+                            <input type="text" class="form-control input" maxlength="13" id="dni" name="dni" placeholder="Ejemplo: 1712345678" >
                         </div>
 
                         <div class="form-group col-md-6">
@@ -84,18 +83,18 @@ $con = mysqli_connect('localhost', 'root', '', 'citasmedicas');
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="correo">Correo Electrónico</label>
-                            <input type="email" class="form-control input" id="correo" name="correo" placeholder="Ej: ejempo@gmail.com" required>
+                            <input type="email" class="form-control input" id="correo" name="correo" placeholder="Ejemplo: ejempo@gmail.com" >
                         </div>
                         <div class="form-group col-md-6">
                             <label for="telef">Teléfono</label>
-                            <input type="text" class="form-control input" maxlength="11" id="telef" name="telef" placeholder="Ej: 0984575858" required>
+                            <input type="text" class="form-control input" maxlength="11" id="telef" name="telef" placeholder="Ejemplo: 0984575858" >
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label for="dir">Dirección</label>
-                            <input type="text" class="form-control input" id="dir" name="dir" placeholder="Ej: Av: Alegria y Felicia" required>
+                            <input type="text" class="form-control input" id="dir" name="dir" placeholder="Ejemplo: Av. Alegria y Felicia" >
                         </div>
                     </div>
 

@@ -23,10 +23,10 @@ if (validarUsuario($user, $cn) == true) {
     if (@$rol) {
         switch ($rol) {
             case ("1"):
-                echo "<script>location.href='../../Vistas/Menu/contenido_vista.php'</script>";
+                echo "<script>location.href='../../Vistas/Inicio/contenido_vista.php'</script>";
 
                 break;
-            case ("2"): echo "<script>location.href='../../Vistas/Menu/contenido_vista.php'</script>";
+            case ("2"): echo "<script>location.href='../../Inicio/Menu/contenido_vista.php'</script>";
 
                 break;
         }

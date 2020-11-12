@@ -122,7 +122,7 @@ if ($usuario == "") {
                           <li><a href="../../Vistas/Medicos/listar.php">Médicos</a></li>
                           <li><a href="../../Vistas/Especialidades/listar.php">Especialidades</a></li>
                           <li><a href="../../Vistas/Horarios/listar.php">Horarios</a></li>
-                          <li><a href="contacts.html">Contacts</a></li>
+                          <li><a href="../../Vistas/Pacientes/listar.php">Pacientes</a></li>
                           <li><a href="profile.html">Profile</a></li>
                         </ul>
                       </li>
