@@ -106,15 +106,12 @@ if ($usuario == "") {
 
                     <h3>Inicio</h3>
                     <ul class="nav side-menu">
-                      <li><a href="../../Vistas/Menu/contenido_vista.php"><i class="fa fa-home"></i> Inicio</a></li>
+                      <li><a href="../../Vistas/Inicio/contenido_vista.php"><i class="fa fa-home"></i> Inicio</a></li>
                     </ul>
 
                   </div>
                   <div class="menu_section">
                     <h3>Mantenimientos</h3>
-
-
-
                     <ul class="nav side-menu">
                       <li><a><i class="fa fa-cogs"></i>Ajustes<span class="fa fa-chevron-down"></span></a>
                       
