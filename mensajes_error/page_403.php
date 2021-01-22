@@ -1,7 +1,7 @@
 <?php
 
 include '../mensajes_error/configuracion.php';
-session_start();
+
 $_SESSION['usuario'] = "";
 
 

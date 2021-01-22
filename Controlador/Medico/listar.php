@@ -1,11 +1,18 @@
 <?php
+require_once '../../Conexion/conexion.php';
 
-$db = mysqli_connect("localhost", "root", "", "citasmedicas");
+$ob = new Conexion();
+$con = $ob->Conectar();
+
+
 $sql = "SELECT * FROM tbl_medico INNER JOIN tbl_especialidades ON tbl_medico.ESP_ID = tbl_especialidades.ESP_ID WHERE	MED_ESTADO = 'A'";
-mysqli_set_charset($db, "utf8");
-if (!$result = mysqli_query($db, $sql)) die("No se encontraron datos ");
+                             
+$que = $con->prepare($sql);
+$que->execute();
+$result = $que->fetchAll();
+if (!$result = $result ) die("No se encontraron datos ");
 $medico = array();
-while ($row = mysqli_fetch_array($result)) {
+foreach ($result as $row ) {
     $id = $row['MED_ID'];
     $nombres = $row['MED_NOMBRES'];
     $apellidoP = $row['MED_P_APELLIDO'] ;
@@ -53,7 +60,7 @@ while ($row = mysqli_fetch_array($result)) {
                      'MED_ESTADO'=>$estado);
 }
 
-mysqli_close($db);
+$con = null;
 $data["data"]= $medico;
 $resultadoJson=json_encode($data);
 echo $resultadoJson;

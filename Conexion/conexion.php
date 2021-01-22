@@ -1,21 +1,32 @@
 <?php
+class Conexion{
+    protected $dbh;
+    public $conexion;
 
-class Conexion
-{
-    public static function Conectar()
-    {
+    Public function Conectar(){
         define('servidor','localhost');
         define('nombre_bd','citasmedicas');
         define('usuario','root');
         define('password','');
-        $opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');
+
+
 
         try {
-            $conexion = new PDO('mysql:host='.servidor.';dbname='.nombre_bd, usuario, password, $opciones);
-            return $conexion;
-        } catch (Exception $ex) {
+            $conectar = $this->dbh = new PDO("mysql:host=".servidor.";dbname=".nombre_bd, usuario, password);
 
-            die('El error es :' . $ex->getMessage());
+            return $conectar;
+        } catch (Exception $e) {
+            print "Â¡Error Mesa de Partes BD!: " . $e->getMessage() . "<br/>";
+            die();
         }
+    }
+
+    public function set_names(){
+        return $this->dbh->query("SET NAMES 'utf8'");
+    }
+
+    public function desconectarDB()
+    {
+        die($this->dbh);
     }
 }

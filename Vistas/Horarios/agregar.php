@@ -16,30 +16,31 @@ $con = mysqli_connect('localhost', 'root', '', 'citasmedicas');
           <div class="form-row">
             <div class="form-group col-md-6">
               <strong><label for="nombres">Médico</label></strong>
-              <select class="form-control input nmedico"  id="nmedico" name="nmedico">                                
-                                <option selected  id="nMedico" value="" >Seleccione una opcion</option>
-                                <?php $q = "SELECT MED_ID, MED_NOMBRES, MED_P_APELLIDO FROM	tbl_medico	 WHERE MED_ESTADO = 'A'";
-                                $que = $con->query($q);
-                                foreach ($que  as $val) { ?>
-                                    <option value="<?php echo $val['MED_ID'] ?>"><?php echo $val['MED_NOMBRES'].' '. $val['MED_P_APELLIDO'] ?> </option>
-                               <?php }  ?> 
-                               
-                            </select></div>
+              <select class="form-control input nmedico" id="nmedico" name="nmedico">
+                <option selected id="nMedico" value="">Seleccione una opcion</option>
+                <?php $q = "SELECT MED_ID, MED_NOMBRES, MED_P_APELLIDO FROM	tbl_medico	 WHERE MED_ESTADO = 'A'";
+                $que = $con->query($q);
+                foreach ($que  as $val) { ?>
+                  <option value="<?php echo $val['MED_ID'] ?>"><?php echo $val['MED_NOMBRES'] . ' ' . $val['MED_P_APELLIDO'] ?> </option>
+                <?php }  ?>
+
+              </select>
+            </div>
 
             <div class="form-group col-md-6">
               <strong><label for="nombres">Fecha</label></strong>
-              <input type="date" class="form-control  input fecha" id="fecha" name="fecha" >
+              <input type="date" class="form-control  input fecha" id="fecha" name="fecha">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <strong><label for="nombres">Hora de Ingreso</label></strong>
-              <input type="time" class="form-control  input hingreso" id="hingreso" name="hingreso" >
+              <input type="time" class="form-control  input hingreso" id="hingreso" name="hingreso">
             </div>
 
             <div class="form-group col-md-6">
               <strong><label for="nombres">Hora de Salida</label></strong>
-              <input type="time" class="form-control  input hsalida" id="hsalida" name="hsalida" >
+              <input type="time" class="form-control  input hsalida" id="hsalida" name="hsalida">
             </div>
           </div>
 

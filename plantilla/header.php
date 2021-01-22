@@ -33,13 +33,16 @@
   <link rel="icon" type="image/x-svg" href="../../img/icono.svg">
 
   <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../Controlador/citas/calendario/css/fullcalendar.min.css">
+
   
 
 </head>
 
 <?php
 
-include '../../Conexion/conexion.php';
+include_once '../../Conexion/conexion.php';
 
 $ob = new Conexion();
 $co = $ob->Conectar();
@@ -120,7 +123,7 @@ if ($usuario == "") {
                           <li><a href="../../Vistas/Especialidades/listar.php">Especialidades</a></li>
                           <li><a href="../../Vistas/Horarios/listar.php">Horarios</a></li>
                           <li><a href="../../Vistas/Pacientes/listar.php">Pacientes</a></li>
-                          <li><a href="profile.html">Profile</a></li>
+                          <li><a href="../../Vistas/Citas/calendario.php">Citas</a></li>
                         </ul>
                       </li>
                       <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>

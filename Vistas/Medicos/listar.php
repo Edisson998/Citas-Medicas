@@ -55,7 +55,7 @@ include '../../plantilla/header.php';
             <div class="x_content">
                 <div class="row">
                     <div class="col-sm-12">
-                       <!--  <b> Mostrar / Ocultar Columnas: </b>
+                        <!--  <b> Mostrar / Ocultar Columnas: </b>
                          <a class="showHideColumn" data-columindex="0">Nombres</a> -
                         <a class="showHideColumn" data-columindex="1">Apellido Paterno</a> -
                         <a class="showHideColumn" data-columindex="2">Apellido Materno</a> -
@@ -74,7 +74,7 @@ include '../../plantilla/header.php';
 
                                 <thead>
                                     <tr>
-                                        
+
                                         <th scope="col">Nombres</th>
                                         <th scope="col">Apellido Paterno</th>
                                         <th scope="col">Apellido Materno</th>
@@ -106,15 +106,15 @@ include '../../plantilla/header.php';
         //llamamos al ID de la tabla para usar DataTable JQuery
         $(document).ready(function() {
             let datatableInstance = $('#tabla').DataTable({
-                // cargamos los datos Json con ajax 
+                // cargamos los datos consumiendo el Json con ajax 
                 "ajax": {
                     "url": "../../Controlador/Medico/listar.php",
                 },
-                "columnDefs": [
-        {"className": "dt-center", "targets": "_all"}
-      ],
-                "columns": [
-                    {
+                "columnDefs": [{
+                    "className": "dt-center",
+                    "targets": "_all"
+                }],
+                "columns": [{
                         "data": "MED_NOMBRES"
                     },
                     {
@@ -123,7 +123,7 @@ include '../../plantilla/header.php';
                     {
                         "data": "MED_S_APELLIDO"
                     },
-                    
+
                     {
                         "data": "MED_TIPO_DNI"
                     },
@@ -153,11 +153,11 @@ include '../../plantilla/header.php';
                     },
                     {
                         "defaultContent": " <button type='button' data-toggle='modal' data-target='#EditarMedicoModal' class='edit btn btn-info btn-sm ' title='Editar'><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Editar </button>  <button type='button' data-toggle='modal' data-target='#EliminarMedicoModal'  class='eliminar btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash' aria-hidden='true'></i> Eliminar  </button> "
-                   
+
                     }
 
                 ],
-                
+
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
@@ -170,10 +170,10 @@ include '../../plantilla/header.php';
 
             //Escojemos la clase showHideColumn para mostrar u ocultar las columnas
             //cuando se haga click 
-         /*   $('.showHideColumn').on('click', function() {
-                var tableColumn = datatableInstance.column($(this).attr('data-columindex'));
-                tableColumn.visible(!tableColumn.visible());
-            });*/
+            /*   $('.showHideColumn').on('click', function() {
+                   var tableColumn = datatableInstance.column($(this).attr('data-columindex'));
+                   tableColumn.visible(!tableColumn.visible());
+               });*/
 
 
             //Llamamos a la funcion grabar
@@ -188,7 +188,7 @@ include '../../plantilla/header.php';
                         icon: 'warning',
                         text: 'Todos los campos son requeridos',
                         showCloseButton: true
-                        
+
                     })
                     // alert("Todos los campos son requeridos")
                 } else {
@@ -199,7 +199,7 @@ include '../../plantilla/header.php';
             $("#btnEditarMedico").on("click", function(e) {
                 e.preventDefault();
                 actualizar();
-                $('.dataTable').DataTable().ajax.reload(null, false);
+
 
             })
 
@@ -255,14 +255,14 @@ include '../../plantilla/header.php';
             dataform = "accion=insertar&" + dataform;
             $.post(url, dataform).done((rs) => {
                 console.log(rs)
-                if (rs.success == true) {                 
+                if (rs.success == true) {
                     // alert("Registro guardado")                   
                     $("#AgregarMedicoModal").modal("hide");
                     Swal.fire(
                         'Correcto!',
                         'Registro guardado!',
                         'success'
-                    );                   
+                    );
                     $(".input").val("");
                     $('.dataTable').DataTable().ajax.reload(null, false);
 
@@ -281,16 +281,16 @@ include '../../plantilla/header.php';
             $.post(urlE, dataformEd).done((rsu) => {
                 console.log(rsu)
                 if (rsu.success == true) {
-                   // alert("Registro Modificado")
-                  
+                    // alert("Registro Modificado")
+
                     $("#EditarMedicoModal").modal('hide');
                     Swal.fire(
                         'Correcto!',
                         'Registro Modificado!',
                         'success'
-                    ); 
+                    );
                     //location.reload();
-                   
+                    $('.dataTable').DataTable().ajax.reload(null, false);
                     console.log(rsu.success)
 
                 } else {
@@ -307,13 +307,13 @@ include '../../plantilla/header.php';
                 console.log(rse)
                 if (rse.success == true) {
                     console.log(rse.success)
-                   // alert("Registro Elimiando")
+                    // alert("Registro Elimiando")
                     $("#EliminarMedicoModal").modal("hide");
                     Swal.fire(
                         'Correcto!',
                         'Registro Eliminado!',
                         'success'
-                    ); 
+                    );
                     $('.dataTable').DataTable().ajax.reload(null, false);
                 } else {
                     console.log(rse.mensaje)
