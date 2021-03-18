@@ -181,7 +181,7 @@ include '../../plantilla/header.php';
 
                 //Capturamos los valores de la base en cada campo de texto del modal editar
 
-                let idHor = $("#idHor").val(data.HOR_ID),
+                let idHor = $("#eidHor").val(data.HOR_ID),
                     nmedico = $("#neMedico").val(data.MED_ID).html(data.MED_NOMBRES),
                     diain = $("#eD_ingreso").val(data.HOR_DIA_INGRESO).html(data.HOR_DIA_INGRESO),
                     diasa = $("#eD_salida").val(data.HOR_DIA_SALIDA).html(data.HOR_DIA_SALIDA),
@@ -222,7 +222,7 @@ include '../../plantilla/header.php';
                     showCloseButton: true
 
                 })
-                FormularioHorario.nmedico.focus();
+               
             } else if (FormularioHorario.d_ingreso.value === "") {
                 Swal.fire({
                     title: 'Todos los campos son requeridos',
@@ -295,6 +295,7 @@ include '../../plantilla/header.php';
             dataformEd = "accion=actualizar&" + dataformEd;
             $.post(urlE, dataformEd).done((rsu) => {
                 console.log(rsu)
+                
                 if (rsu.success == true) {
                     // alert("Registro Modificado")                  
                     $("#EditarHorariodModal").modal('hide');

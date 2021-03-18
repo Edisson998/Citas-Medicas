@@ -1,4 +1,4 @@
-<?php include "../../Modelo/conexion.php";
+<?php require_once "../../Modelo/conexion.php";
 header("Content-Type: application/json"); // muestra el json còmo objeto
 
 $Obj = new Conexion();
@@ -50,8 +50,8 @@ if ($_POST) {
             $sqlu = "UPDATE tbl_horario SET MED_ID = :nemedico, HOR_DIA_INGRESO = :ed_ingreso, HOR_DIA_SALIDA = :ed_salida, HOR_HORA_INGRESO = :ehingreso , HOR_HORA_SALIDA = :ehsalida WHERE HOR_ID = '$codigo' ";
             $queryu = $pdo->prepare($sqlu);
             $queryu->bindParam(':nemedico', $nemedico, PDO::PARAM_INT);
-            $query->bindParam(':ed_ingreso', $ed_ingreso, PDO::PARAM_STMT);
-            $query->bindParam(':ed_salida', $ed_salida, PDO::PARAM_STMT);
+            $queryu->bindParam(':ed_ingreso', $ed_ingreso, PDO::PARAM_STMT);
+            $queryu->bindParam(':ed_salida', $ed_salida, PDO::PARAM_STMT);
             $queryu->bindParam(':ehingreso', $ehingreso, PDO::PARAM_STMT);
             $queryu->bindParam(':ehsalida', $ehsalida, PDO::PARAM_STMT);
             $rsu = $queryu->execute();
@@ -59,13 +59,11 @@ if ($_POST) {
             if ($rsu) {
                 $response["success"] = true;
                 $response["mensaje"] = "Se modifico correctamente";
-                $response["consulta"] = $queryu;
-                $response["execute"] = $rsu;
+                
             } else {
                 $response["success"] = false;
                 $response["mensaje"] = "No se modifico correctamente";
-                $response["consulta"] = $queryu;
-                $response["execute"] = $rsu;
+                
             }
             echo json_encode($response);
             exit;
@@ -74,7 +72,8 @@ if ($_POST) {
 
             $codigoEl = $_POST['idHorEl'];
             $sqle = "UPDATE tbl_horario SET HOR_ESTADO = 'I' where HOR_ID = '$codigoEl'";
-            
+            $querye = $pdo->prepare($sqle);
+            $rse = $querye->execute();
 
             if ($rse) {
                 $response["success"] = true;

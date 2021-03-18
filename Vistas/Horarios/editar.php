@@ -81,14 +81,19 @@ $ob = new Conexion();
             <div class="form-group col-md-6">
 
               <strong><label for="nombres">Hora de Ingreso</label></strong>
-              <input type="time" class="form-control  " id="ehingreso" name="ehingreso">
+              <input type="time" class="form-control input  " id="ehingreso" name="ehingreso">
 
             </div>
+
+          </div>
+
+
+          <div class="form-row">
 
             <div class="form-group col-md-6">
 
               <strong><label for="nombres">Hora de Salida</label></strong>
-              <input type="time" class="form-control " id="ehsalida" name="ehsalida">
+              <input type="time" class="form-control input " id="ehsalida" name="ehsalida">
 
             </div>
 
@@ -98,7 +103,7 @@ $ob = new Conexion();
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-close" aria-hidden="true"></i> Cerrar</button>
-        <button type="button" class="btn btn-primary"  name="btnEditarHorario" id="btnEditarHorario"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+        <button type="button" class="btn btn-primary" name="btnEditarHorario" id="btnEditarHorario"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
       </div>
       </form>
     </div>
