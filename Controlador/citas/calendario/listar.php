@@ -1,6 +1,6 @@
 <?php
-require_once "../../../Conexion/conexion.php";
-header("Content-Type: application/json"); // muestra el json còmo objeto
+require_once "../../../Modelo/conexion.php";
+header("Content-Type: application/json"); // muestra el json como objeto
 
 $Obj = new Conexion();
 $pdo = $Obj->Conectar();

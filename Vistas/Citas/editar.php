@@ -1,12 +1,12 @@
 <?php
-require_once '../../Conexion/conexion.php';
+require_once '../../Modelo/conexion.php';
 
 $ob = new Conexion();
 
 ?>
 <link href="../../sweetalert/sweetalert2.min.css" rel="stylesheet">
 <div class="modal fade" id="EditarCita" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5  class="modal-title" i><i class="fa fa-medkit" aria-hidden="true"></i> Editar Cita </h5>

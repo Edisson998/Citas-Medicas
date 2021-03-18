@@ -1,4 +1,4 @@
-<?php include "../../Conexion/conexion.php";
+<?php include "../../Modelo/conexion.php";
 header("Content-Type: application/json"); // muestra el json còmo objeto
 
 $Obj = new Conexion();

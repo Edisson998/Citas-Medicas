@@ -55,7 +55,7 @@ include '../../plantilla/header.php';
             <div class="x_content">
                 <div class="row">
                     <div class="col-sm-12">
-                       <!--  <b> Mostrar / Ocultar Columnas: </b>
+                        <!--  <b> Mostrar / Ocultar Columnas: </b>
                          <a class="showHideColumn" data-columindex="0">Nombres</a> -
                         <a class="showHideColumn" data-columindex="1">Apellido Paterno</a> -
                         <a class="showHideColumn" data-columindex="2">Apellido Materno</a> -
@@ -73,12 +73,13 @@ include '../../plantilla/header.php';
                             <table id="tabla" class="table table-striped table-bordered dt-responsive nowrap contenido" style="width:100% ;">
 
                                 <thead>
-                                    <tr>                                        
-                                        <th scope="col">Médico</th>      
-                                        <th scope="col">Fecha</th>                               
-                                        <th scope="col">Hora de Ingreso</th> 
-                                        <th scope="col">Hora de Salida</th> 
-                                        <th scope="col">Estado</th>                                       
+                                    <tr>
+                                        <th scope="col">Médico</th>
+                                        <th scope="col">Día de entrada de turno</th>
+                                        <th scope="col">Día de salida de turno</th>
+                                        <th scope="col">Hora de Ingreso</th>
+                                        <th scope="col">Hora de Salida</th>
+                                        <th scope="col">Estado</th>
                                         <th scope="col" data-priority>Acciones</th>
                                     </tr>
                                 </thead>
@@ -90,6 +91,8 @@ include '../../plantilla/header.php';
                 </div>
             </div>
         </div>
+
+    </div>
     </div>
     <script src="../../sweetalert/sweetalert2.all.min.js"></script>
     <script src="../../Complementos_Plantilla/js/jquery.min.js"></script>
@@ -101,37 +104,39 @@ include '../../plantilla/header.php';
                 "ajax": {
                     "url": "../../Controlador/Horarios/listar.php",
                 },
-                "columnDefs": [
-        {"className": "dt-center", "targets": "_all"}
-      ],
-                "columns": [
-                    {
+                "columnDefs": [{
+                    "className": "dt-center",
+                    "targets": "_all"
+                }],
+                "columns": [{
                         "data": "MED_NOMBRES"
                     },
                     {
-                        "data": "HOR_DIAS"
+                        "data": "HOR_DIA_INGRESO"
                     },
                     {
-                        "data": "HOR_INGRESO"
+                        "data": "HOR_DIA_SALIDA"
                     },
                     {
-                        "data": "HOR_SALIDA"
+                        "data": "HOR_HORA_INGRESO"
+                    },
+                    {
+                        "data": "HOR_HORA_SALIDA"
                     },
                     {
                         "data": "HOR_ESTADO"
                     },
                     {
                         "defaultContent": " <button type='button' data-toggle='modal' data-target='#EditarHorariodModal' class='edit btn btn-info btn-sm ' title='Editar'><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Editar </button>  <button type='button' data-toggle='modal' data-target='#EliminarHorarioModal'  class='eliminar btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash' aria-hidden='true'></i> Eliminar  </button> "
-                   
+
                     }
 
                 ],
-                
+
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
-                responsive: true,
-
+                responsive: true
 
             });
 
@@ -139,35 +144,11 @@ include '../../plantilla/header.php';
 
             //Escojemos la clase showHideColumn para mostrar u ocultar las columnas
             //cuando se haga click 
-         /*   $('.showHideColumn').on('click', function() {
-                var tableColumn = datatableInstance.column($(this).attr('data-columindex'));
-                tableColumn.visible(!tableColumn.visible());
-            });*/
+            /*   $('.showHideColumn').on('click', function() {
+                   var tableColumn = datatableInstance.column($(this).attr('data-columindex'));
+                   tableColumn.visible(!tableColumn.visible());
+               });*/
 
-
-            //Llamamos a la funcion grabar
-
-
-            $("#btnGuardarHorario").on("click", function() {
-                input = $(".nmedico").val();
-                input2 = $(".fecha").val();
-                input3 = $(".hingreso").val();
-                input4 = $(".hsalida").val();
-                
-                if (input.length == 0 || input2.length == 0 || input3.length == 0 || input4.length == 0 ) {
-                    Swal.fire({
-                        title: 'Oops',
-                        icon: 'warning',
-                        text: 'Todos los campos son requeridos',
-                        className: "red-bg",
-                        showCloseButton: true
-                        
-                    })
-                    // alert("Todos los campos son requeridos")
-                } else {
-                    grabar();
-                }
-            })
 
             $("#btnEditarHorario").on("click", function(e) {
                 e.preventDefault();
@@ -185,6 +166,10 @@ include '../../plantilla/header.php';
             Obtener_Data_Editar("#tabla tbody", datatableInstance);
             Obtener_Id_Eliminar("#tabla tbody", datatableInstance);
 
+
+
+
+
         });
 
 
@@ -192,28 +177,94 @@ include '../../plantilla/header.php';
         let Obtener_Data_Editar = function(tbody, datatableInstance) {
             $(tbody).on('click', 'button.edit', function() {
                 var data = datatableInstance.row($(this).parents("tr")).data();
-                // console.log(data);
+                console.log(data);
 
                 //Capturamos los valores de la base en cada campo de texto del modal editar
 
-                let idHor = $("#idHor").val(data.HOR_ID),                  
-                    nmedico= $("#neMedico").val(data.MED_ID).html(data.MED_NOMBRES),    
-                    dias = $("#efecha").val(data.HOR_DIAS),
-                    ingreso = $("#ehingreso").val(data.HOR_INGRESO),
-                    salida = $("#ehsalida").val(data.HOR_SALIDA)            
+                let idHor = $("#idHor").val(data.HOR_ID),
+                    nmedico = $("#neMedico").val(data.MED_ID).html(data.MED_NOMBRES),
+                    diain = $("#eD_ingreso").val(data.HOR_DIA_INGRESO).html(data.HOR_DIA_INGRESO),
+                    diasa = $("#eD_salida").val(data.HOR_DIA_SALIDA).html(data.HOR_DIA_SALIDA),
+                    ingreso = $("#ehingreso").val(data.HOR_HORA_INGRESO),
+                    salida = $("#ehsalida").val(data.HOR_HORA_SALIDA)
 
             });
         }
+
+               
 
         let Obtener_Id_Eliminar = function(tbody, datatableInstance) {
             $(tbody).on('click', 'button.eliminar', function() {
                 var data = datatableInstance.row($(this).parents('tr')).data();
-                // console.log(data);             
-                let idesp = $("#formEliminarHorario #idHorEl").val(data.HOR_ID)
-                    
+                 console.log(data); 
+
+
+                //Capturamos los valores de la base en cada campo de texto del modal editar
+                       
+                let idHor = $("#formEliminarHorario #idHorEl").val(data.HOR_ID)
+
 
             });
         }
+
+        //Creamos una funcion que nos permita verificar que los campos de texto tenga información
+        function validarFormularioHor() {
+
+            //Referenciamos que formulario vamos a validarS
+            let FormularioHorario = document.formuHorario;
+
+            //Preguntamos si cada campo esta vacio que nos alerte que el campo es requerido caso contrario se dirigira a la funcion grabar
+            if (FormularioHorario.nmedico.value === "") {
+                Swal.fire({
+                    title: 'Todos los campos son requeridos',
+                    icon: 'warning',
+                    text: 'Escoja un médico',
+                    showCloseButton: true
+
+                })
+                FormularioHorario.nmedico.focus();
+            } else if (FormularioHorario.d_ingreso.value === "") {
+                Swal.fire({
+                    title: 'Todos los campos son requeridos',
+                    icon: 'warning',
+                    text: 'Escoja un día de ingreso',
+                    showCloseButton: true
+
+                })
+            } else if (FormularioHorario.d_salida.value === "") {
+                Swal.fire({
+                    title: 'Todos los campos son requeridos',
+                    icon: 'warning',
+                    text: 'Escoja un día de salida',
+                    showCloseButton: true
+
+                })
+
+            } else if (FormularioHorario.hingreso.value === "") {
+                Swal.fire({
+                    title: 'Todos los campos son requeridos',
+                    icon: 'warning',
+                    text: 'Escoja una hora de entrada',
+                    showCloseButton: true
+
+                })
+
+            } else if (FormularioHorario.hsalida.value === "") {
+                Swal.fire({
+                    title: 'Todos los campos son requeridos',
+                    icon: 'warning',
+                    text: 'Escoja una hora de salida',
+                    showCloseButton: true
+
+                })
+
+            } else {
+                grabar();
+            }
+
+        }
+
+
         //Funcion para verificar que la variable rs retorne true
         let grabar = function() {
             let url = "../../Controlador/Horarios/ControladorHorarios.php";
@@ -221,14 +272,14 @@ include '../../plantilla/header.php';
             dataform = "accion=insertar&" + dataform;
             $.post(url, dataform).done((rs) => {
                 console.log(rs)
-                if (rs.success == true) {                 
+                if (rs.success == true) {
                     // alert("Registro guardado")                   
                     $("#AgregarHorariodModal").modal("hide");
                     Swal.fire(
                         'Correcto!',
                         'Registro guardado!',
                         'success'
-                    );                   
+                    );
                     $(".input").val("");
                     $('.dataTable').DataTable().ajax.reload(null, false);
                 } else {
@@ -245,13 +296,13 @@ include '../../plantilla/header.php';
             $.post(urlE, dataformEd).done((rsu) => {
                 console.log(rsu)
                 if (rsu.success == true) {
-                   // alert("Registro Modificado")                  
+                    // alert("Registro Modificado")                  
                     $("#EditarHorariodModal").modal('hide');
                     Swal.fire(
                         'Correcto!',
                         'Registro Modificado!',
                         'success'
-                    ); 
+                    );
                     //location.reload();
                     $('.dataTable').DataTable().ajax.reload(null, false);
                     console.log(rsu.success)
@@ -269,13 +320,13 @@ include '../../plantilla/header.php';
                 console.log(rse)
                 if (rse.success == true) {
                     console.log(rse.success)
-                   // alert("Registro Elimiando")
+                    // alert("Registro Elimiando")
                     $("#EliminarHorarioModal").modal("hide");
                     Swal.fire(
                         'Correcto!',
                         'Registro Eliminado',
                         'success'
-                    ); 
+                    );
                     $('.dataTable').DataTable().ajax.reload(null, false);
                 } else {
                     console.log(rse.mensaje)

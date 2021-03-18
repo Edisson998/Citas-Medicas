@@ -42,7 +42,7 @@
 
 <?php
 
-include_once '../../Conexion/conexion.php';
+include_once '../../Modelo/conexion.php';
 
 $ob = new Conexion();
 $co = $ob->Conectar();
@@ -126,18 +126,16 @@ if ($usuario == "") {
                           <li><a href="../../Vistas/Citas/calendario.php">Citas</a></li>
                         </ul>
                       </li>
-                      <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
+                      <li><a><i class="fa fa-file-archive-o"></i> Reportes <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                           <li><a href="page_403.html">403 Error</a></li>
                           <li><a href="page_404.html">404 Error</a></li>
                           <li><a href="page_500.html">500 Error</a></li>
-                          <li><a href="plain_page.html">Plain Page</a></li>
-                          <li><a href="login.html">Login Page</a></li>
+                         
                           <li><a href="pricing_tables.html">Pricing Tables</a></li>
                         </ul>
                       </li>                      
-                      <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
-                    </ul>
+                     </ul>
                   </div>
 
                 </div>

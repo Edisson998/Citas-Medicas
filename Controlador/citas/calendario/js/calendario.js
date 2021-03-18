@@ -1,9 +1,13 @@
 $(document).ready(function () {
    
+    
 
     $('#CalendarioCitas').fullCalendar({
+
+       
     //en el header podemos mover al gusto que queramos nuestros botones 
     //e incluso podemos agregar botones personalizados
+
         header: {
             left: 'today,prev,next',
             center: 'title',
@@ -26,6 +30,8 @@ $(document).ready(function () {
     //events es un conjunto de datos que esta en un arreglo     
     //Listamos los eventos disponibles a traves de un Json       
         events: "http://localhost/Citas%20Medicas/Controlador/citas/calendario/listar.php",
+        
+        
 
     //con esto obtenemos la informacion de un determinado evento al momento de hacer click
         eventClick: function (calEvent, jsEvent, view) {
@@ -42,6 +48,22 @@ $(document).ready(function () {
             
         },
 
+        editable: true,
+        eventDrop:function(calEvent){
+            
+            $('#EidCit').val(calEvent.CIT_ID);           
+            $('#EEspecialidad').val(calEvent.ESP_ID).html(calEvent.EP_DESCRIPCION);
+            $('#EnMedico').val(calEvent.MED_ID).html(calEvent.Nombres);
+            $('#Epaciente').val(calEvent.PAC_ID).html(calEvent.NombresP);
+
+            FechaHora = calEvent.start.format().split("T");
+            $('#Efecha').val(FechaHora[0] + " " + FechaHora[1]);
+
+            $('#Eobs').val(calEvent.CIT_OBSERVACIONES);
+
+            actualizar();
+        },
+        eventLimit:true,
         locale: 'es'
     });
 
@@ -161,7 +183,7 @@ function grabar() {
     })
 }
 
-function actualizar() {
+function actualizar(modal) {
     let urlE = "../../Controlador/citas/calendario/ControladorCita.php";
     let dataformEd = $("#formEditarCita").serialize();
     dataformEd = "accion=actualizar&" + dataformEd;
@@ -169,16 +191,19 @@ function actualizar() {
         console.log(rsu)
         if (rsu.success == true) {
             // alert("Registro Modificado")
+              
+             if(!modal){
 
-            $("#EditarCita").modal('hide');
-            Swal.fire(
-                'Correcto!',
-                'Registro Modificado!',
-                'success'
-            );
-            //location.reload();
-            $('#CalendarioCitas').fullCalendar('refetchEvents');
-            console.log(rsu.success)
+                $("#EditarCita").modal('hide');
+                Swal.fire(
+                    'Correcto!',
+                    'Registro Modificado!',
+                    'success'
+                );
+                //location.reload();
+                $('#CalendarioCitas').fullCalendar('refetchEvents');
+                console.log(rsu.success)
+             }            
 
         } else {
             console.log(rsu.mensaje)

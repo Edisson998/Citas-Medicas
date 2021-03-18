@@ -1,5 +1,5 @@
 <?php
-require_once '../../Conexion/conexion.php';
+require_once '../../Modelo/conexion.php';
 
 $ob = new Conexion();
 ?>
@@ -50,7 +50,7 @@ $ob = new Conexion();
                             <select class="form-control" id="especialidad" name="especialidad">
                                 <option selected id="Especialidad" value="">Seleccione una opcion</option>
                                 <?php
-                                 $con = $ob->Conectar();
+                                $con = $ob->Conectar();
                                 $q = "SELECT ESP_ID, EP_DESCRIPCION FROM tbl_especialidades";                                
                                 $que = $con->prepare($q);
                                 $que->execute();

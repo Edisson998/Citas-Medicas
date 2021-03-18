@@ -1,6 +1,6 @@
 <?php
 
-include '../../Conexion/conexion.php';
+include '../../Modelo/conexion.php';
 session_start();
 
 $objeto = new Conexion();
@@ -26,7 +26,7 @@ if (validarUsuario($user, $cn) == true) {
                 echo "<script>location.href='../../Vistas/Inicio/contenido_vista.php'</script>";
 
                 break;
-            case ("2"): echo "<script>location.href='../../Inicio/Menu/contenido_vista.php'</script>";
+            case ("2"): echo "<script>location.href='../../Vistas/Inicio/contenido_vista.php'</script>";
 
                 break;
         }
