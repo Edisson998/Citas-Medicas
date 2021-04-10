@@ -11,10 +11,12 @@
         <form class="needs-validation" novalidate enctype="multipart/form-data" id="formEspecialidad" method="POST">
 
           <div class="form-row">
+
             <div class="form-group col-md-12">
-              <strong><label for="nombres">Especialidad</label></strong>
-              <input type="text" class="form-control especialidad input" id="especialidad" name="especialidad" placeholder="Ej: Cirujano Plastico" required>
+              <strong><label for="especialidad">Especialidad</label></strong>
+              <input type="text" class="form-control especialidad input" id="especialidad" name="especialidad" placeholder="Ej: Cirugía Plástica" required>
             </div>
+
           </div>
 
       </div>

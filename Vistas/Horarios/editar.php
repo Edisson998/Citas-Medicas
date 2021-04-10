@@ -21,10 +21,8 @@ $ob = new Conexion();
           <div class="form-row">
 
             <div class="form-group col-md-6">
-
               <input type="hidden" class="form-control" id="eidHor" name="eidHor">
-
-              <strong><label for="nombres">Médico</label></strong>
+              <strong><label for="nemedico">Médico</label></strong>
               <select class="form-control " id="nemedico" name="nemedico">
                 <option selected id="neMedico" value="">Seleccione una opcion</option>
                 <?php
@@ -33,16 +31,14 @@ $ob = new Conexion();
                 $que = $con->query($q);
                 $que->execute();
                 $result = $que->fetchAll();
-                foreach ($result  as $val) { ?>
+                foreach ($result  as $val) {
+                ?>
                   <option value="<?php echo $val['MED_ID'] ?>"><?php echo $val['MED_NOMBRES'] . ' ' . $val['MED_P_APELLIDO'] ?> </option>
                 <?php }  ?>
-
               </select>
-
             </div>
 
             <div class="form-group col-md-6">
-
               <strong><label for="ed_ingreso">Dia de Ingreso</label></strong>
               <select id="ed_ingreso" name="ed_ingreso" class="form-control input">
                 <option selected id="eD_ingreso" value="">Seleccione una opción</option>
@@ -54,17 +50,14 @@ $ob = new Conexion();
                 <option value="Sa">Sábado</option>
                 <option value="Do">Domingo</option>
               </select>
-
             </div>
-
 
           </div>
 
           <div class="form-row">
 
             <div class="form-group col-md-6">
-
-              <strong><label for="nombres">Dia de Salida</label></strong>
+              <strong><label for="ed_salida">Dia de Salida</label></strong>
               <select id="ed_salida" name="ed_salida" class="form-control input">
                 <option selected id="eD_salida" value="">Seleccione una opción</option>
                 <option value="Lu">Lunes</option>
@@ -75,14 +68,11 @@ $ob = new Conexion();
                 <option value="Sa">Sábado</option>
                 <option value="Do">Domingo</option>
               </select>
-
             </div>
 
             <div class="form-group col-md-6">
-
-              <strong><label for="nombres">Hora de Ingreso</label></strong>
+              <strong><label for="ehingreso">Hora de Ingreso</label></strong>
               <input type="time" class="form-control input  " id="ehingreso" name="ehingreso">
-
             </div>
 
           </div>
@@ -91,20 +81,20 @@ $ob = new Conexion();
           <div class="form-row">
 
             <div class="form-group col-md-6">
-
-              <strong><label for="nombres">Hora de Salida</label></strong>
+              <strong><label for="ehsalida">Hora de Salida</label></strong>
               <input type="time" class="form-control input " id="ehsalida" name="ehsalida">
-
             </div>
 
           </div>
+
       </div>
 
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-close" aria-hidden="true"></i> Cerrar</button>
-        <button type="button" class="btn btn-primary" name="btnEditarHorario" id="btnEditarHorario"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+        <button type="button" class="btn btn-primary" name="btnEditarHorario" id="btnEditarHorario"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Modificar</button>
       </div>
+
       </form>
     </div>
   </div>

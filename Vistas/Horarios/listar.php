@@ -95,7 +95,7 @@ include '../../plantilla/header.php';
     </div>
     </div>
     <script src="../../sweetalert/sweetalert2.all.min.js"></script>
-    <script src="../../Complementos_Plantilla/js/jquery.min.js"></script>
+    <script src="../../jquery/jquery.min.js"></script>
     <script>
         //llamamos al ID de la tabla para usar DataTable JQuery
         $(document).ready(function() {

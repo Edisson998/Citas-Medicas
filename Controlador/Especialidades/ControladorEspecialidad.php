@@ -58,7 +58,7 @@ if ($_POST) {
         } elseif ($_POST['accion'] == "eliminar") {
 
             $codigoEspEl = $_POST['idEspEl'];
-            $sqle = "UPDATE tbl_especialidades SET ESP_ESTADO = 'I' where ESP_ID = '$codigoEspEl'";
+            $sqle = "DELETE FROM tbl_especialidades where ESP_ID = '$codigoEspEl'";
             $querye = $pdo->prepare($sqle);
             $rse = $querye->execute();
 

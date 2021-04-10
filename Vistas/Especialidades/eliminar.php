@@ -8,10 +8,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="formEliminarEspecialidad" method="POST" >
+                <form id="formEliminarEspecialidad" method="POST">
+                    
                     <input type="hidden" id="idEspEl" name="idEspEl">
-                     <h3 class="text-center">¿ Seguro que desea eliminar este registro ?</h3>
-                     
+                    <h3 class="text-center">¿ Seguro que desea eliminar este registro ?</h3>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-close" aria-hidden="true"></i> Cerrar</button>

@@ -1,5 +1,5 @@
 <?php 
-include "../../../Modelo/conexion.php";
+require_once "../../../Modelo/conexion.php";
 header("Content-Type: application/json"); // muestra el json còmo objeto
 
 $Obj = new Conexion();
@@ -21,7 +21,7 @@ if ($_POST) {
         $est = 'A';
         $creg = date('Y-m-d');
         $color = '#000000';
-        $end = date('Y-m-d');
+        $end = $start;
 
         $sentenciaSQL = ("INSERT INTO tbl_cita(ESP_ID, MED_ID, PAC_ID, start, CIT_OBSERVACIONES, CIT_ESTADO, CIT_CREACION_REGISTRO,textColor, end) values (:esp, :med, :pac, :start, :obs, :est, :creg, :color, :end )");
         $query = $pdo->prepare($sentenciaSQL);
@@ -57,7 +57,7 @@ if ($_POST) {
        
 
 
-        $sqlu = "UPDATE tbl_cita SET ESP_ID = :espE, MED_ID = :medE, PAC_ID = :pacE, start = :startE, CIT_OBSERVACIONES = :obsE WHERE CIT_ID = '$codigocit' ";
+        $sqlu = "UPDATE tbl_cita SET ESP_ID = :espE, MED_ID = :medE, PAC_ID = :pacE, start = :startE, CIT_OBSERVACIONES = :obsE, end = :startE WHERE CIT_ID = '$codigocit' ";
         $queryu = $pdo->prepare($sqlu);
         $queryu->bindParam(':espE', $espE, PDO::PARAM_INT);
         $queryu->bindParam(':medE', $medE, PDO::PARAM_INT);

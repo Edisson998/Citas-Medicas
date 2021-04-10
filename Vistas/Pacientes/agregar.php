@@ -15,23 +15,23 @@ $con = mysqli_connect('localhost', 'root', '', 'citasmedicas');
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="nombres">Nombres</label>
-                            <input type="text" class="form-control nombres input" id="nombresP" name="nombresP" placeholder="Ejemplo: Camilo " >
+                            <label for="nombresP">Nombres</label>
+                            <input type="text" class="form-control nombres input" id="nombresP" name="nombresP" placeholder="Ejemplo: Camilo ">
 
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="P_Apellido">Primer Apellido</label>
-                            <input type="text" class="form-control P_Apellido input" id="P_ApellidoP" name="P_ApellidoP" placeholder="Ejemplo: Castro" >
+                            <label for="P_ApellidoP">Primer Apellido</label>
+                            <input type="text" class="form-control P_Apellido input" id="P_ApellidoP" name="P_ApellidoP" placeholder="Ejemplo: Castro">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="S_Apellido">Segundo Apellido</label>
-                            <input type="text" class="form-control input" id="S_ApellidoP" name="S_ApellidoP" placeholder="Ejemplo: Villareal" >
+                            <input type="text" class="form-control input" id="S_ApellidoP" name="S_ApellidoP" placeholder="Ejemplo: Villareal">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="genero">Género</label>
-                            <select id="generoP" name="generoP" class="form-control input" >
+                            <label for="generoP">Género</label>
+                            <select id="generoP" name="generoP" class="form-control input">
                                 <option selected id="GeneroP" value="">Seleccione una opción</option>
                                 <option value="F">Femenino</option>
                                 <option value="M">Masculino</option>
@@ -40,10 +40,10 @@ $con = mysqli_connect('localhost', 'root', '', 'citasmedicas');
                     </div>
 
 
-                    <div class="form-row">                        
+                    <div class="form-row">
 
                         <div class="form-group col-md-6">
-                            <label for="t_dni">Tipo de Documento</label>
+                            <label for="t_dniP">Tipo de Documento</label>
                             <select id="t_dniP" name="t_dniP" class="form-control input">
                                 <option selected id="T_dniP" value="">Seleccione una opción</option>
                                 <option value="C">Cédula</option>
@@ -53,38 +53,38 @@ $con = mysqli_connect('localhost', 'root', '', 'citasmedicas');
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="dni">Documento de Identidad</label>
-                            <input type="text" class="form-control input" maxlength="13" id="dniP" name="dniP" placeholder="Ejemplo: 1712345678" >
+                            <label for="dniP">Documento de Identidad</label>
+                            <input type="text" class="form-control input" maxlength="13" id="dniP" name="dniP" placeholder="Ejemplo: 1712345678">
                         </div>
 
                     </div>
 
                     <div class="form-row">
-                        
+
 
                         <div class="form-group col-md-6">
-                            <label for="f_naci">Fecha de Nacimiento</label>
+                            <label for="f_naciP">Fecha de Nacimiento</label>
                             <input type="date" class="form-control input" id="f_naciP" name="f_naciP">
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="correo">Correo Electrónico</label>
-                            <input type="email" class="form-control input" id="correoP" name="correoP" placeholder="Ejemplo: ejemplo@gmail.com" >
+                            <label for="correoP">Correo Electrónico</label>
+                            <input type="email" class="form-control input" id="correoP" name="correoP" placeholder="Ejemplo: ejemplo@gmail.com">
                         </div>
                     </div>
 
                     <div class="form-row">
-                        
+
                         <div class="form-group col-md-6">
-                            <label for="telef">Teléfono</label>
-                            <input type="text" class="form-control input" maxlength="11" id="telefP" name="telefP" placeholder="Ejemplo: 0984575858" >
+                            <label for="telefP">Teléfono</label>
+                            <input type="text" class="form-control input" maxlength="11" id="telefP" name="telefP" placeholder="Ejemplo: 0984575858">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <label for="dir">Dirección</label>
-                            <input type="text" class="form-control input" id="dirP" name="dirP" placeholder="Ejemplo: Av. Alegria y Felicia" >
+                            <label for="dirP">Dirección</label>
+                            <input type="text" class="form-control input" id="dirP" name="dirP" placeholder="Ejemplo: Av. Alegria y Felicia">
                         </div>
                     </div>
 

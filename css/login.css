@@ -74,7 +74,7 @@ h2{
   background: transparent;
 }
 form input[type="submit"]:hover,.form input[type="submit"]:active,.form input[type="submit"]:focus {
-  color:transparent;
+  color: #14BACE;
   background: rgba(255,255,255,.2);
     border:1px solid #14BACE;
 }

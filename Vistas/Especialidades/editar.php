@@ -14,7 +14,7 @@
             <input type="hidden" class="form-control" id="idEsp" name="idEsp">
             
             <div class="form-group col-md-12">
-              <strong><label for="nombres">Especialidad</label></strong>
+              <strong><label for="editarEspecialidad">Especialidad</label></strong>
               <input type="text" class="form-control  input" id="editarEspecialidad" name="editarEspecialidad">
             </div>
 
@@ -23,7 +23,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-close" aria-hidden="true"></i> Cerrar</button>
-        <button type="button" class="btn btn-primary" name="btnEditarEspecialidad" id="btnEditarEspecialidad"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+        <button type="button" class="btn btn-primary" name="btnEditarEspecialidad" id="btnEditarEspecialidad"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Modificar</button>
       </div>
       </form>
     </div>

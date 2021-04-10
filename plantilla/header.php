@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Menú</title>
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/css/bootstrap-select.min.css">
   <!-- Bootstrap -->
   <link href="../../Complementos_Plantilla/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome -->
@@ -35,6 +35,8 @@
   <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="../../Controlador/citas/calendario/css/fullcalendar.min.css">
+ 
+  <link rel="stylesheet" href="../../PluginsReportes/datepicker/datepicker3.css">
 
   
 
@@ -119,6 +121,7 @@ if ($usuario == "") {
                       <li><a><i class="fa fa-cogs"></i>Ajustes<span class="fa fa-chevron-down"></span></a>
                       
                         <ul class="nav child_menu">
+                         <li><a href="../../Vistas/Usuarios/listar.php" >Usuarios</a></li>
                           <li><a href="../../Vistas/Medicos/listar.php">Médicos</a></li>
                           <li><a href="../../Vistas/Especialidades/listar.php">Especialidades</a></li>
                           <li><a href="../../Vistas/Horarios/listar.php">Horarios</a></li>
@@ -128,7 +131,7 @@ if ($usuario == "") {
                       </li>
                       <li><a><i class="fa fa-file-archive-o"></i> Reportes <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                          <li><a href="page_403.html">403 Error</a></li>
+                          <li><a href="../../Vistas/Reportes/reporteCita.php">Citas</a></li>
                           <li><a href="page_404.html">404 Error</a></li>
                           <li><a href="page_500.html">500 Error</a></li>
                          
@@ -187,7 +190,7 @@ if ($usuario == "") {
             <!-- /top navigation -->
 
             <!-- page content -->
-            <div class="right_col" role="main">
+            <div class="right_col"  role="main">
               <div class="">
               <?php } else {  ?>
 

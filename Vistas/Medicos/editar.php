@@ -109,7 +109,7 @@ $con = mysqli_connect('localhost', 'root', '', 'citasmedicas');
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-close" aria-hidden="true"></i> Cerrar</button>
-                <button type="button" class="btn btn-primary" name="btnEditarMedico" id="btnEditarMedico"><i class="fa fa-floppy-o" aria-hidden="true"></i> Editar</button>
+                <button type="button" class="btn btn-primary" name="btnEditarMedico" id="btnEditarMedico"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Modificar</button>
             </div>
             </form>
         </div>

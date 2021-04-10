@@ -17,20 +17,20 @@ $con = mysqli_connect('localhost', 'root', '', 'citasmedicas');
                             
                             
                         <div class="form-group col-md-6">
-                            <label for="nombres">Nombres</label>
+                            <label for="EidPacienteP">Nombres</label>
                             <input type="hidden" class="form-control "  id="EidPacienteP" name="EidPacienteP"  >
                            
                             <input type="text" class="form-control Enombres input" id="EnombresP" name="EnombresP" >
                         
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="P_Apellido">Primer Apellido</label>
+                            <label for="EP_ApellidoP">Primer Apellido</label>
                             <input type="text" class="form-control EP_Apellido input" id="EP_ApellidoP" name="EP_ApellidoP" >
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="S_Apellido">Segundo Apellido</label>
+                            <label for="ES_ApellidoP">Segundo Apellido</label>
                             <input type="text" class="form-control input " id="ES_ApellidoP" name="ES_ApellidoP" >
                         </div>
                         <div class="form-group col-md-6">
@@ -47,7 +47,7 @@ $con = mysqli_connect('localhost', 'root', '', 'citasmedicas');
                     <div class="form-row">                        
 
                         <div class="form-group col-md-6">
-                            <label for="Et_dni">Tipo de Documento</label>
+                            <label for="Ed_t_dniP">Tipo de Documento</label>
                             <select id="Et_dniP" name="Ed_t_dniP" class="form-control " >
                                 <option selected id="E_t_dniP" >Seleccione una opción</option>
                                 <option value="C">Cédula</option>
@@ -57,7 +57,7 @@ $con = mysqli_connect('localhost', 'root', '', 'citasmedicas');
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="dni">Documento de Identidad</label>
+                            <label for="EdniP">Documento de Identidad</label>
                             <input type="text" class="form-control input" maxlength="13" id="EdniP" name="EdniP">
                         </div>
 
@@ -67,12 +67,12 @@ $con = mysqli_connect('localhost', 'root', '', 'citasmedicas');
                         
 
                         <div class="form-group col-md-6">
-                            <label for="f_naci">Fecha de Nacimiento</label>
+                            <label for="Ef_naciP">Fecha de Nacimiento</label>
                             <input type="date" class="form-control input " id="Ef_naciP" name="Ef_naciP">
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="correo">Correo Electrónico</label>
+                            <label for="EcorreoP">Correo Electrónico</label>
                             <input type="email" class="form-control input" id="EcorreoP" name="EcorreoP">
                         </div>
                     </div>
@@ -80,14 +80,14 @@ $con = mysqli_connect('localhost', 'root', '', 'citasmedicas');
                     <div class="form-row">
                         
                         <div class="form-group col-md-6">
-                            <label for="telef">Teléfono</label>
+                            <label for="EtelefP">Teléfono</label>
                             <input type="text" class="form-control input" maxlength="10" id="EtelefP" name="EtelefP">
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <label for="dir">Dirección</label>
+                            <label for="EdirP">Dirección</label>
                             <input type="text" class="form-control input" id="EdirP" name="EdirP" >
                         </div>
                     </div>
@@ -95,7 +95,7 @@ $con = mysqli_connect('localhost', 'root', '', 'citasmedicas');
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-close" aria-hidden="true"></i> Cerrar</button>
-                <button type="button" class="btn btn-primary" name="btnEditarPaciente" id="btnEditarPaciente"><i class="fa fa-floppy-o" aria-hidden="true"></i> Editar</button>
+                <button type="button" class="btn btn-primary" name="btnEditarPaciente" id="btnEditarPaciente"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Modificar</button>
             </div>
             </form>
         </div>

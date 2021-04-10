@@ -32,7 +32,7 @@ include '../../plantilla/header.php';
                             <div id="CalendarioCitas">
                                 <?php include 'agregar.php' ?>
                                 <?php include 'editar.php' ?>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@ include '../../plantilla/header.php';
 
 
 
-<script src="../../Complementos_Plantilla/js/jquery.min.js"></script>
+<script src="../../jquery/jquery.min.js"></script>
 
 <script src="../../Controlador/citas/calendario/js/calendario.js"></script>
 

@@ -18,7 +18,7 @@ $ob = new Conexion();
           <div class="form-row">
 
             <div class="form-group col-md-6">
-              <strong><label for="nombres">Médico</label></strong>
+              <strong><label for="nmedico">Médico</label></strong>
               <select class="form-control input nmedico" id="nmedico" name="nmedico">
                 <option selected id="nMedico" value="">Seleccione una opcion</option>
                 <?php
@@ -27,16 +27,15 @@ $ob = new Conexion();
                 $que = $con->query($q);
                 $que->execute();
                 $result = $que->fetchAll();
-                foreach ($result  as $val) { ?>
+                foreach ($result  as $val) {
+                ?>
                   <option value="<?php echo $val['MED_ID'] ?>"><?php echo $val['MED_NOMBRES'] . ' ' . $val['MED_P_APELLIDO'] ?> </option>
                 <?php }  ?>
-
               </select>
-
             </div>
 
             <div class="form-group col-md-6">
-              <strong><label for="nombres">Dia de Ingreso</label></strong>
+              <strong><label for="d_ingreso">Dia de Ingreso</label></strong>
               <select id="d_ingreso" name="d_ingreso" class="form-control input">
                 <option selected id="D_ingreso" value="">Seleccione una opción</option>
                 <option value="Lu">Lunes</option>
@@ -54,7 +53,7 @@ $ob = new Conexion();
           <div class="form-row">
 
             <div class="form-group col-md-6">
-              <strong><label for="nombres">Dia de Salida</label></strong>
+              <strong><label for="d_salida">Dia de Salida</label></strong>
               <select id="d_salida" name="d_salida" class="form-control input">
                 <option selected id="D_salida" value="">Seleccione una opción</option>
                 <option value="Lu">Lunes</option>
@@ -68,29 +67,28 @@ $ob = new Conexion();
             </div>
 
             <div class="form-group col-md-6">
-              <strong><label for="nombres">Hora de Ingreso</label></strong>
+              <strong><label for="hingreso">Hora de Ingreso</label></strong>
               <input type="time" class="form-control  input hingreso" id="hingreso" name="hingreso">
             </div>
           </div>
 
           <div class="form-row">
 
-<div class="form-group col-md-6">
-  <strong><label for="nombres">Hora de Salida</label></strong>
-  <input type="time" class="form-control  input hsalida" id="hsalida" name="hsalida">
-</div>
-</div>
+            <div class="form-group col-md-6">
+              <strong><label for="hsalida">Hora de Salida</label></strong>
+              <input type="time" class="form-control  input hsalida" id="hsalida" name="hsalida">
+            </div>
 
-</div>
-
-<div class="modal-footer">
-<button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-close" aria-hidden="true"></i> Cerrar</button>
-<button type="button" class="btn btn-primary" onclick="validarFormularioHor();" name="btnGuardarHorario"  id="btnGuardarHorario"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
-</div>
-</form>
+          </div>
 
       </div>
 
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-close" aria-hidden="true"></i> Cerrar</button>
+        <button type="button" class="btn btn-primary" onclick="validarFormularioHor();" name="btnGuardarHorario" id="btnGuardarHorario"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+      </div>
       
+      </form>
+    </div>
   </div>
 </div>

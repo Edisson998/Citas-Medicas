@@ -1,6 +1,6 @@
 <?php
 
-include '../mensajes_error/configuracion.php';
+require_once '../mensajes_error/configuracion.php';
 
 $_SESSION['usuario'] = "";
 
@@ -41,7 +41,7 @@ $_SESSION['usuario'] = "";
             <div class="text-center text-center">
               <h1 class="error-number">403</h1>
               <h2>Acceso Denegado</h2>
-              <p>Se requiere autenticación completa para acceder a este recurso. 
+              <p>Se requiere permisos para acceder a este recurso. 
                 <br><br>
                 <a href="#" class="btn btn-info"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Volver</a>
               </p>

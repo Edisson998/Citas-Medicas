@@ -1,11 +1,16 @@
 <?php
+require_once '../../Modelo/conexion.php';
 
-$db = mysqli_connect("localhost", "root", "", "citasmedicas");
+$ob = new Conexion();
+$con = $ob->Conectar();
 $sql = "SELECT * FROM tbl_paciente WHERE PAC_ESTADO = 'A'";
-mysqli_set_charset($db, "utf8");
-if (!$result = mysqli_query($db, $sql)) die("No se encontraron datos ");
+$que = $con->prepare($sql);
+$que->execute();
+$result = $que->fetchAll();
+
 $paciente = array();
-while ($row = mysqli_fetch_array($result)) {
+
+foreach ($result as $row) {
     $id = $row['PAC_ID'];
     $nombres = $row['PAC_NOMBRES'];
     $apellidoP = $row['PAC_P_APELLIDO'] ;
@@ -48,8 +53,7 @@ while ($row = mysqli_fetch_array($result)) {
                      'PAC_TELEFONO'=>$tel,
                      'PAC_ESTADO'=>$estado);
 }
-
-mysqli_close($db);
+$con = null;
 $data["data"]= $paciente;
 $resultadoJson=json_encode($data);
 echo $resultadoJson;

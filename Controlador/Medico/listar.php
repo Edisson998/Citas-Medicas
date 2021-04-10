@@ -4,7 +4,6 @@ require_once '../../Modelo/conexion.php';
 $ob = new Conexion();
 $con = $ob->Conectar();
 
-
 $sql = "SELECT * FROM tbl_medico INNER JOIN tbl_especialidades ON tbl_medico.ESP_ID = tbl_especialidades.ESP_ID WHERE	MED_ESTADO = 'A'";
 $que = $con->prepare($sql);
 $que->execute();
