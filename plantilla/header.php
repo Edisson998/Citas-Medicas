@@ -35,10 +35,10 @@
   <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="../../Controlador/citas/calendario/css/fullcalendar.min.css">
- 
+
   <link rel="stylesheet" href="../../PluginsReportes/datepicker/datepicker3.css">
 
-  
+
 
 </head>
 
@@ -55,7 +55,7 @@ if ($usuario == "") {
   header('Location: ../../Vistas/Login/login.php');
 } else {
 
-  
+
   if ((time() - $_SESSION['tiempo']) > 60 * 60 * 1) {
 
 
@@ -119,9 +119,9 @@ if ($usuario == "") {
                     <h3>Mantenimientos</h3>
                     <ul class="nav side-menu">
                       <li><a><i class="fa fa-cogs"></i>Ajustes<span class="fa fa-chevron-down"></span></a>
-                      
+
                         <ul class="nav child_menu">
-                         <li><a href="../../Vistas/Usuarios/listar.php" >Usuarios</a></li>
+                          <li><a href="../../Vistas/Usuarios/listar.php">Usuarios</a></li>
                           <li><a href="../../Vistas/Medicos/listar.php">Médicos</a></li>
                           <li><a href="../../Vistas/Especialidades/listar.php">Especialidades</a></li>
                           <li><a href="../../Vistas/Horarios/listar.php">Horarios</a></li>
@@ -132,13 +132,10 @@ if ($usuario == "") {
                       <li><a><i class="fa fa-file-archive-o"></i> Reportes <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                           <li><a href="../../Vistas/Reportes/reporteCita.php">Citas</a></li>
-                          <li><a href="page_404.html">404 Error</a></li>
-                          <li><a href="page_500.html">500 Error</a></li>
-                         
-                          <li><a href="pricing_tables.html">Pricing Tables</a></li>
+
                         </ul>
-                      </li>                      
-                     </ul>
+                      </li>
+                    </ul>
                   </div>
 
                 </div>
@@ -176,7 +173,7 @@ if ($usuario == "") {
                         <?php echo $nombre . ' ' . $apellidoP . ' ' . $apellidoM; ?>
                       </a>
                       <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="javascript:;"> Profile</a>                     
+                        <a class="dropdown-item" href="javascript:;"> Profile</a>
                         <a class="dropdown-item" href="../../Controlador/Login/cerrar.php"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión</a>
                       </div>
                     </li>
@@ -190,7 +187,7 @@ if ($usuario == "") {
             <!-- /top navigation -->
 
             <!-- page content -->
-            <div class="right_col"  role="main">
+            <div class="right_col " id="contenido" role="main">
               <div class="">
               <?php } else {  ?>
 
@@ -315,7 +312,7 @@ if ($usuario == "") {
                         </div>
                       </div>
                       <!-- /top navigation -->
-                      
+
                       <!-- page content -->
                       <div class="right_col" role="main">
                         <div class="">

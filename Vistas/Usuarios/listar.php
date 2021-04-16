@@ -55,20 +55,7 @@ include '../../plantilla/header.php';
             <div class="x_content">
                 <div class="row">
                     <div class="col-sm-12">
-                        <!--  <b> Mostrar / Ocultar Columnas: </b>
-                         <a class="showHideColumn" data-columindex="0">Nombres</a> -
-                        <a class="showHideColumn" data-columindex="1">Apellido Paterno</a> -
-                        <a class="showHideColumn" data-columindex="2">Apellido Materno</a> -
-                        <a class="showHideColumn" data-columindex="3">Tipo de Documento</a> -
-                        <a class="showHideColumn" data-columindex="4">Documento de Identidad</a> -
-                        <a class="showHideColumn" data-columindex="5">Especialidad</a> -
-                        <a class="showHideColumn" data-columindex="6">Género</a> -
-                        <a class="showHideColumn" data-columindex="7">Fecha de Nacimiento</a> -
-                        <a class="showHideColumn" data-columindex="8">Dirección</a> -
-                        <a class="showHideColumn" data-columindex="9">Correo Electrónico</a> -
-                        <a class="showHideColumn" data-columindex="10">Teléfono</a> -
-                        <a class="showHideColumn" data-columindex="11">Estado</a>
-                        <br>-->
+                    
                         <div class="card-box table-responsive">
                             <table id="tabla" class="table table-striped table-bordered dt-responsive nowrap contenido" style="width:100% ;">
 

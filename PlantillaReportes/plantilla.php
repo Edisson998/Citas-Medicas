@@ -1,13 +1,13 @@
 <?php  
-include '../../fpdf/fpdf.php';
+require_once '../../fpdf/fpdf.php';
 
 class PDF extends FPDF
 {
 function header()
 {
-$this->Image("../../img/favicon.png",5,5,30);
-$this->Image("../../img/favicon.png",170,15,30,10);
-$this->ln(25);
+//$this->Image("../../img/favicon.png",170,8,20,20);
+
+
 
 }
 

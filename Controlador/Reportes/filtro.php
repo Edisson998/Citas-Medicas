@@ -6,9 +6,9 @@ $Obj = new Conexion();
 $pdo = $Obj->Conectar();
 
 
-$columns = array('EP_DESCRIPCION','Nombres', 'NombresP', 'start');
+$columns = array('CIT_ID','EP_DESCRIPCION','Nombres', 'NombresP', 'start');
 
-$query = "select * from reporteCita WHERE ";
+$query = "SELECT * FROM  reportecita  WHERE ";
 
 if($_POST["is_date_search"] == "yes")
 {
@@ -32,7 +32,7 @@ if(isset($_POST["order"]))
 }
 else
 {
- $query .= 'ORDER BY CIT_ID DESC ';
+ $query .= 'ORDER BY CIT_ID ASC ';
 }
 
 $query1 = '';
@@ -44,18 +44,12 @@ if($_POST["length"] != -1)
 
 $resultado = $pdo->prepare($query . $query1);
 $resultado->execute();
-$result = $resultado->fetchAll();
-
-
-
-
-//$number_filter_row = mysqli_num_rows(mysqli_query($connect, $query));
-
-//$result = mysqli_query($connect, $query . $query1);
+$number_filter_row = $resultado->fetchAll();
 
 $data = array();
+$filtered_rows = $resultado->rowCount();
 
-foreach($result as $row)
+foreach($number_filter_row as $row)
 {
  $fecha=date("d/m/Y", strtotime($row["start"]));			
  $sub_array = array();
@@ -67,19 +61,19 @@ foreach($result as $row)
  $data[] = $sub_array;
 }
 
-function get_all_data($pdo,$result)
+function get_all_data($pdo)
 {
- $sql = "select * from reporteCita";
+ $sql = "SELECT CIT_ID, EP_DESCRIPCION , CONCAT(tbl_medico.MED_NOMBRES,' ',tbl_medico.MED_P_APELLIDO) as Nombres	, CONCAT(tbl_paciente.PAC_NOMBRES,' ', tbl_paciente.PAC_P_APELLIDO) as NombresP, CONVERT( tbl_cita.`start`, DATE) as start FROM	tbl_cita INNER JOIN	tbl_medico ON tbl_cita.MED_ID = tbl_medico.MED_ID	INNER JOIN tbl_especialidades	ON 	tbl_cita.ESP_ID = tbl_especialidades.ESP_ID	INNER JOIN	tbl_paciente ON tbl_cita.PAC_ID = tbl_paciente.PAC_ID";
  $query = $pdo->prepare($sql);
  $query->execute();
- $result = $query->fetchAll();  
- return ($result);
+ $resulta = $query->fetchAll();  
+ return $query->rowCount();
 }
 
 $output = array(
  "draw"    => intval($_POST["draw"]),
- "recordsTotal"  =>  get_all_data($pdo,$result),
- "recordsFiltered" => $result,
+ "recordsTotal"  =>  $filtered_rows,
+ "recordsFiltered" => get_all_data($pdo),
  "data"    => $data
 );
 

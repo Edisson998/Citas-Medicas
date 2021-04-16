@@ -4,6 +4,15 @@ require_once '../../Modelo/conexion.php';
 $ob = new Conexion();
 
 ?>
+
+<Style>
+
+.buttonGC{
+font-size: 11.3px;
+margin-top: 0.8%;
+}
+
+</Style>
 <link href="../../sweetalert/sweetalert2.min.css" rel="stylesheet">
 <div class="modal fade" id="EditarCita" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -15,7 +24,7 @@ $ob = new Conexion();
                 </button>
             </div>
             <div class="modal-body">
-                <form novalidate enctype="multipart/form-data" id="formEditarCita" method="POST">
+                <form novalidate enctype="multipart/form-data" id="formEditarCita" action="../../Reportes/Citas/generarPdfCita.php" method="POST">
 
                     <div class="form-row">
 
@@ -80,10 +89,14 @@ $ob = new Conexion();
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-info btn-lg" onclick="actualizar();" name="btnEditarCita" id="btnEditarCita"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Modificar</button>
+            <br>
+            <a href="../../Reportes/Citas/generarPdfCita.php" class="btn btn-secondary btn-sm buttonGC"  target="_blank"  name="btnGenerarCita" id="btnGenerarCita" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Generar Comprobante</a>
+            <br>
+                <button type="button" class="btn btn-info btn-sm " onclick="actualizar();" name="btnEditarCita" id="btnEditarCita"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Modificar</button>
                 <br>
-                <button type="button" class="btn btn-danger btn-lg " onclick="eliminar();" name="btnEliminarCita" id="btnEliminarCita"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</button>
-            </div>
+                <button type="button" class="btn btn-danger btn-sm " onclick="eliminar();" name="btnEliminarCita" id="btnEliminarCita"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</button>
+           
+                <br> </div>
 
             </form>
         </div>
