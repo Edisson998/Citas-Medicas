@@ -1,20 +1,20 @@
-$(document).ready(function () {
-   
-    
+$(document).ready(function() {
+
+
 
     $('#CalendarioCitas').fullCalendar({
 
-       
-    //en el header podemos mover al gusto que queramos nuestros botones 
-    //e incluso podemos agregar botones personalizados
+
+        //en el header podemos mover al gusto que queramos nuestros botones 
+        //e incluso podemos agregar botones personalizados
 
         header: {
             left: 'today,prev,next',
             center: 'title',
             right: 'month,basicWeek,basicDay '
         },
-    //puedo selecionar una celda del calendario con dayclick
-        dayClick: function (date, jsEvent, view) {
+        //puedo selecionar una celda del calendario con dayclick
+        dayClick: function(date, jsEvent, view) {
             //me informa el valor seleccionado de cad celda del calendario
             //alert("valor seleccionado: " + date.format());
             //me informa cual es la vista en la que me ecnuentro del calendario
@@ -27,16 +27,16 @@ $(document).ready(function () {
         },
 
 
-    //events es un conjunto de datos que esta en un arreglo     
-    //Listamos los eventos disponibles a traves de un Json       
-        events: "http://localhost/Citas%20Medicas/Controlador/citas/calendario/listar.php",
-        
-        
+        //events es un conjunto de datos que esta en un arreglo
+        //Listamos los eventos disponibles a traves de un Json
+        events: "http://localhost/Citas-Medicas/Controlador/citas/calendario/listar.php",
 
-    //con esto obtenemos la informacion de un determinado evento al momento de hacer click
-        eventClick: function (calEvent, jsEvent, view) {
+
+
+        //con esto obtenemos la informacion de un determinado evento al momento de hacer click
+        eventClick: function(calEvent, jsEvent, view) {
             $("#EditarCita").modal("show");
-            $('#EidCit').val(calEvent.CIT_ID);           
+            $('#EidCit').val(calEvent.CIT_ID);
             $('#EEspecialidad').val(calEvent.ESP_ID).html(calEvent.EP_DESCRIPCION);
             $('#EnMedico').val(calEvent.MED_ID).html(calEvent.Nombres);
             $('#Epaciente').val(calEvent.PAC_ID).html(calEvent.NombresP);
@@ -45,13 +45,13 @@ $(document).ready(function () {
             $('#Efecha').val(FechaHora[0] + " " + FechaHora[1]);
 
             $('#Eobs').val(calEvent.CIT_OBSERVACIONES);
-            
+
         },
 
         editable: true,
-        eventDrop:function(calEvent){
-            
-            $('#EidCit').val(calEvent.CIT_ID);           
+        eventDrop: function(calEvent) {
+
+            $('#EidCit').val(calEvent.CIT_ID);
             $('#EEspecialidad').val(calEvent.ESP_ID).html(calEvent.EP_DESCRIPCION);
             $('#EnMedico').val(calEvent.MED_ID).html(calEvent.Nombres);
             $('#Epaciente').val(calEvent.PAC_ID).html(calEvent.NombresP);
@@ -63,15 +63,15 @@ $(document).ready(function () {
 
             actualizar();
         },
-        eventLimit:true,
+        eventLimit: true,
         locale: 'es'
     });
 
     //AQUI VA EL SELECT
-//Funcion para cargar select del médico segun la especialidad mediante AJAX
-//Formulario de AGREGAR CITA   
-var medico = $('#nmedico');
-    $('#especialidad').change(function () {
+    //Funcion para cargar select del médico segun la especialidad mediante AJAX
+    //Formulario de AGREGAR CITA   
+    var medico = $('#nmedico');
+    $('#especialidad').change(function() {
         var id_especialidad = $(this).val();
 
         $.ajax({
@@ -82,16 +82,16 @@ var medico = $('#nmedico');
             type: 'POST',
             url: '../../Controlador/citas/select/select.php',
 
-        }).done(function (data) {
+        }).done(function(data) {
             medico.html(data);
         });
     });
-//FIN DE FORMULARIO DE AGREGAR CITA
+    //FIN DE FORMULARIO DE AGREGAR CITA
 
-//Formulario de Editar CITA 
+    //Formulario de Editar CITA 
 
     var medicoE = $('#nEmedico');
-    $('#Eespecialidad').change(function () {
+    $('#Eespecialidad').change(function() {
         var id_especialidadE = $(this).val();
 
         $.ajax({
@@ -102,26 +102,26 @@ var medico = $('#nmedico');
             type: 'POST',
             url: '../../Controlador/citas/select/select.php',
 
-        }).done(function (data) {
+        }).done(function(data) {
             medicoE.html(data);
         });
     });
-//FIN DE FORMULARIO EDITAR CITA
-//Fin
-//FIN DE LOS SELECT
+    //FIN DE FORMULARIO EDITAR CITA
+    //Fin
+    //FIN DE LOS SELECT
 
-   
+
 });
 
 
 //Creamos una funcion que nos permita verificar que los campos de texto tenga información
 function validarFormulario() {
 
-//Referenciamos que formulario vamos a validarS
+    //Referenciamos que formulario vamos a validarS
     let Formulario = document.formuCita;
 
-//Preguntamos si cada campo esta vacio que nos alerte que el campo es requerido caso contrario se dirigira a la funcion grabar
-    if (Formulario.especialidad.value === "" ) {
+    //Preguntamos si cada campo esta vacio que nos alerte que el campo es requerido caso contrario se dirigira a la funcion grabar
+    if (Formulario.especialidad.value === "") {
         Swal.fire({
             title: 'Todos los campos son requeridos',
             icon: 'warning',
@@ -129,7 +129,7 @@ function validarFormulario() {
             showCloseButton: true
 
         })
-    }else if (Formulario.nmedico.value === "" ) {
+    } else if (Formulario.nmedico.value === "") {
         Swal.fire({
             title: 'Todos los campos son requeridos',
             icon: 'warning',
@@ -137,7 +137,7 @@ function validarFormulario() {
             showCloseButton: true
 
         })
-    } else if( Formulario.Paciente.value === "") {
+    } else if (Formulario.Paciente.value === "") {
         Swal.fire({
             title: 'Todos los campos son requeridos',
             icon: 'warning',
@@ -145,8 +145,8 @@ function validarFormulario() {
             showCloseButton: true
 
         })
-       
-    }else{
+
+    } else {
         grabar();
     }
 
@@ -154,17 +154,17 @@ function validarFormulario() {
 
 //Comenzamos creando la funcion grabar que va ha consumir el archivo php
 function grabar() {
-//Refenciamos el sitio en donde estamos ejecutando nuestros datos
+    //Refenciamos el sitio en donde estamos ejecutando nuestros datos
     let url = "../../Controlador/citas/calendario/ControladorCita.php";
-//Indicamos de que formulario va a obtener la informacion que se va a enviar a la BDD
+    //Indicamos de que formulario va a obtener la informacion que se va a enviar a la BDD
     let dataform = $("#formCita").serialize();
-//Especificamos que accion ha ejecutado 
+    //Especificamos que accion ha ejecutado 
     dataform = "accion=agregar&" + dataform;
-//Enviamos por metodo post esta informacion
+    //Enviamos por metodo post esta informacion
     $.post(url, dataform).done((rs) => {
-//Mostramos en consola el resultado de la variable rs 
+        //Mostramos en consola el resultado de la variable rs 
         console.log(rs)
-//Si el resultado es true se nos insertara en la BDD sin problema caso contrario nos mostrara un error
+            //Si el resultado es true se nos insertara en la BDD sin problema caso contrario nos mostrara un error
         if (rs.success == true) {
             $("#AgregarCita").modal("hide");
             Swal.fire(
@@ -191,8 +191,8 @@ function actualizar(modal) {
         console.log(rsu)
         if (rsu.success == true) {
             // alert("Registro Modificado")
-              
-             if(!modal){
+
+            if (!modal) {
 
                 $("#EditarCita").modal('hide');
                 Swal.fire(
@@ -203,16 +203,16 @@ function actualizar(modal) {
                 //location.reload();
                 $('#CalendarioCitas').fullCalendar('refetchEvents');
                 console.log(rsu.success)
-             }            
+            }
 
         } else {
             console.log(rsu.mensaje)
         }
     })
-    
+
 }
 
- function eliminar () {
+function eliminar() {
     let urlEl = "../../Controlador/citas/calendario/ControladorCita.php";
     let dataformEl = $("#formEditarCita").serialize();
     dataformEl = "accion=eliminar&" + dataformEl;
@@ -220,7 +220,7 @@ function actualizar(modal) {
         console.log(rse)
         if (rse.success == true) {
             console.log(rse.success)
-            // alert("Registro Elimiando")
+                // alert("Registro Elimiando")
             $("#EditarCita").modal("hide");
             Swal.fire(
                 'Correcto!',
@@ -233,5 +233,3 @@ function actualizar(modal) {
         }
     })
 }
-
-
