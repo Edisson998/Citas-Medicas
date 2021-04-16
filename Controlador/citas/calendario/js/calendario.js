@@ -29,7 +29,7 @@ $(document).ready(function() {
 
         //events es un conjunto de datos que esta en un arreglo
         //Listamos los eventos disponibles a traves de un Json
-        events: "http://localhost/Citas-Medicas/Controlador/citas/calendario/listar.php",
+        events: "http://localhost/Citas%20Medicas/Controlador/citas/calendario/listar.php",
 
 
 

@@ -53,16 +53,20 @@ if ($_POST) {
         $medE = $_POST['nEmedico'];
         $pacE = $_POST['EPaciente'];
         $startE = $_POST['Efecha'];
+        $estadoCita = $_POST['estadoCit'];
+        $colorEstado = $_POST['colorEstado'];
         $obsE = $_POST['Eobs'];
        
 
 
-        $sqlu = "UPDATE tbl_cita SET ESP_ID = :espE, MED_ID = :medE, PAC_ID = :pacE, start = :startE, CIT_OBSERVACIONES = :obsE, end = :startE WHERE CIT_ID = '$codigocit' ";
+        $sqlu = "UPDATE tbl_cita SET ESP_ID = :espE, MED_ID = :medE, PAC_ID = :pacE, start = :startE, CIT_OBSERVACIONES = :obsE, end = :startE,textColor = :colorEstado ,  CIT_ESTADO_CITA = :estadoCita WHERE CIT_ID = '$codigocit' ";
         $queryu = $pdo->prepare($sqlu);
         $queryu->bindParam(':espE', $espE, PDO::PARAM_INT);
         $queryu->bindParam(':medE', $medE, PDO::PARAM_INT);
         $queryu->bindParam(':pacE', $pacE, PDO::PARAM_INT);
         $queryu->bindParam(':startE', $startE, PDO::PARAM_STMT);
+        $queryu->bindParam(':colorEstado', $colorEstado, PDO::PARAM_STR);
+        $queryu->bindParam(':estadoCita', $estadoCita, PDO::PARAM_STR_CHAR);
         $queryu->bindParam(':obsE', $obsE, PDO::PARAM_STR);
         $rsu = $queryu->execute();
 

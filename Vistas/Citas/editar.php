@@ -6,12 +6,10 @@ $ob = new Conexion();
 ?>
 
 <Style>
-
-.buttonGC{
-font-size: 11.3px;
-margin-top: 0.8%;
-}
-
+    .buttonGC {
+        font-size: 11.3px;
+        margin-top: 0.8%;
+    }
 </Style>
 <link href="../../sweetalert/sweetalert2.min.css" rel="stylesheet">
 <div class="modal fade" id="EditarCita" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -60,8 +58,8 @@ margin-top: 0.8%;
 
                         <div class="form-group col-md-6">
                             <label for="EPaciente">Paciente</label>
-                            <select class="form-control "  id="EPaciente" name="EPaciente">
-                                <option  selected id="Epaciente" value="">Seleccione una opcion</option>
+                            <select class="form-control " id="EPaciente" name="EPaciente">
+                                <option selected id="Epaciente" value="">Seleccione una opcion</option>
                                 <?php $q = "SELECT * FROM	tbl_paciente	 WHERE PAC_ESTADO = 'A'";
                                 $que = $con->query($q);
                                 foreach ($que  as $val) { ?>
@@ -79,6 +77,32 @@ margin-top: 0.8%;
 
                     <div class="form-row">
 
+                        <div class="form-group col-md-6">
+                            <label for="estadoCit">Estado de la Cita </label>
+                            <select class="form-control" id="estadoCit" name="estadoCit">
+                                <option selected id="estadoCita" value="">Seleccione una opcion</option>
+                                <option id="" value="PA">Atendido</option>
+                                <option id="" value="PNA">No Atendido</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="colorEstado">Color</label>
+                            <select class="form-control" id="colorEstado" name="colorEstado">
+                                <option selected id="estadoCita" value="">Seleccione una opcion</option>
+                                <option id="" value="#00FF00">Verde</option>
+                                <option id="" value="#FF0000">Rojo</option>
+                            </select>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="form-row">
+
+
+
                         <div class="form-group col-md-12">
                             <label for="Eobs">Observaciones </label>
                             <textarea type="text" class="form-control" id="Eobs" name="Eobs"></textarea>
@@ -89,14 +113,15 @@ margin-top: 0.8%;
             </div>
 
             <div class="modal-footer">
-            <br>
-            <a href="../../Reportes/Citas/generarPdfCita.php" class="btn btn-secondary btn-sm buttonGC"  target="_blank"  name="btnGenerarCita" id="btnGenerarCita" ><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Generar Comprobante</a>
-            <br>
+                <br>
+                <a href="../../Reportes/Citas/generarPdfCita.php" class="btn btn-secondary btn-sm buttonGC" target="_blank" name="btnGenerarCita" id="btnGenerarCita"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Generar Comprobante</a>
+                <br>
                 <button type="button" class="btn btn-info btn-sm " onclick="actualizar();" name="btnEditarCita" id="btnEditarCita"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Modificar</button>
                 <br>
                 <button type="button" class="btn btn-danger btn-sm " onclick="eliminar();" name="btnEliminarCita" id="btnEliminarCita"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</button>
-           
-                <br> </div>
+
+                <br>
+            </div>
 
             </form>
         </div>
