@@ -99,7 +99,7 @@ if ($_POST) {
         } elseif ($_POST['accion'] == "eliminar") {
 
             $codigo = $_POST['idMedicoEl'];
-            $sqle = "UPDATE tbl_medico SET MED_ESTADO = 'I' where MED_ID = '$codigo'";
+            $sqle = "DELETE FROM tbl_medico  where MED_ID = '$codigo'";
             $querye = $pdo->prepare($sqle);
             $rse = $querye->execute();
 

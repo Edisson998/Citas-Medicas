@@ -1,11 +1,13 @@
 <?php
+
 require_once '../../Modelo/conexion.php';
+require_once '../../Controlador/GlobalFuntion.php';
 
 $ob = new Conexion();
 
 ?>
 
-<link href="../../sweetalert/sweetalert2.min.css" rel="stylesheet">
+<link href="<?php echo SERVERURL?>sweetalert/sweetalert2.min.css" rel="stylesheet">
 
 
 <div class="modal fade" id="AgregarCita" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -97,7 +99,7 @@ $ob = new Conexion();
         </div>
     </div>
 </div>
-<script src="../../jquery/jquery.min.js"></script>
-<script src="../../sweetalert/sweetalert2.all.min.js"></script>
-<script src="../../jquery/jquery-1.10.2.min.js"></script>
-<script src="../../Controlador/citas/calendario/js/calendario.js"></script>
+<script src="<?php echo SERVERURL?>jquery/jquery.min.js"></script>
+<script src="<?php echo SERVERURL?>sweetalert/sweetalert2.all.min.js"></script>
+<script src="<?php echo SERVERURL?>jquery/jquery-1.10.2.min.js"></script>
+<script src="<?php echo SERVERURL?>Controlador/citas/calendario/js/calendario.js"></script>

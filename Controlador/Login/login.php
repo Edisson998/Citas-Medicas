@@ -9,7 +9,8 @@ $cn = $objeto->Conectar();
 $user = $_POST['usuario'];
 $pass = md5($_POST['password']);
 $pass2 = base64_encode($pass);
-$_SESSION['tiempo'] = time();
+
+$_SESSION["ultimoAcceso"] = date("Y-n-j H:i:s");
 
 
 $sql = "SELECT * FROM tbl_usuario INNER JOIN tbl_rol ON tbl_usuario.ROL_ID = tbl_rol.ROL_ID WHERE tbl_usuario.USU_CORREO = '$user' and tbl_usuario.USU_CLAVE = '$pass2' ";

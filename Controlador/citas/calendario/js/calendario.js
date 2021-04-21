@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+    
 
 
     $('#CalendarioCitas').fullCalendar({
@@ -29,7 +30,8 @@ $(document).ready(function() {
 
         //events es un conjunto de datos que esta en un arreglo
         //Listamos los eventos disponibles a traves de un Json
-        events: "http://localhost/Citas%20Medicas/Controlador/citas/calendario/listar.php",
+       
+        events: "http://localhost/CitasMedicas/Controlador/citas/calendario/listar.php",
 
 
 
@@ -44,7 +46,10 @@ $(document).ready(function() {
             FechaHora = calEvent.start._i.split(" ");
             $('#Efecha').val(FechaHora[0] + " " + FechaHora[1]);
 
+            $('#estadoCita').val(calEvent.CIT_ESTADO_CITA).html(calEvent.CIT_ESTADO_CITA);
+            $('#colorCita').val(calEvent.textColor).html(calEvent.textColor);
             $('#Eobs').val(calEvent.CIT_OBSERVACIONES);
+           
 
         },
 
@@ -58,9 +63,11 @@ $(document).ready(function() {
 
             FechaHora = calEvent.start.format().split("T");
             $('#Efecha').val(FechaHora[0] + " " + FechaHora[1]);
-
+            
+            $('#estadoCita').val(calEvent.CIT_ESTADO_CITA).html(calEvent.CIT_ESTADO_CITA);
+            $('#colorCita').val(calEvent.textColor).html(calEvent.textColor);
+            
             $('#Eobs').val(calEvent.CIT_OBSERVACIONES);
-
             actualizar();
         },
         eventLimit: true,
@@ -201,6 +208,7 @@ function actualizar(modal) {
                     'success'
                 );
                 //location.reload();
+                $(".inputE").val("");
                 $('#CalendarioCitas').fullCalendar('refetchEvents');
                 console.log(rsu.success)
             }
@@ -211,6 +219,8 @@ function actualizar(modal) {
     })
 
 }
+
+
 
 function eliminar() {
     let urlEl = "../../Controlador/citas/calendario/ControladorCita.php";
@@ -233,3 +243,4 @@ function eliminar() {
         }
     })
 }
+

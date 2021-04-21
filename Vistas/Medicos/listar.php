@@ -13,7 +13,7 @@ require_once '../../plantilla/header.php';
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap.min.css" rel="stylesheet">
-    <link href="../../sweetalert/sweetalert2.min.css" rel="stylesheet">
+    <link href="<?php echo SERVERURL?>sweetalert/sweetalert2.min.css" rel="stylesheet">
 
     <title>Especialidades</title>
 
@@ -28,6 +28,18 @@ require_once '../../plantilla/header.php';
             color: blue;
 
         }
+
+        .mensaje {
+	
+      font-family: Berlin Sans FB Demi;
+      padding:5px;
+      color:#00aae4;
+      border-radius:5px;
+      text-align: left;
+      font-size: 2.5em;
+      margin-bottom: 5px;
+    
+  } 
     </style>
 
 </head>
@@ -35,7 +47,7 @@ require_once '../../plantilla/header.php';
 <body>
     <div class="page-title">
         <div class="title_left">
-            <h3 style="padding-left: 10px;">Lista de Médicos</h3>
+            <h3 class="mensaje" style="padding-left: 10px;">Lista de Médicos</h3>
         </div>
     </div>
 
@@ -100,15 +112,15 @@ require_once '../../plantilla/header.php';
             </div>
         </div>
     </div>
-    <script src="../../sweetalert/sweetalert2.all.min.js"></script>
-    <script src="../../jquery/jquery.min.js"></script>
+    <script src="<?php echo SERVERURL?>sweetalert/sweetalert2.all.min.js"></script>
+    <script src="<?php echo SERVERURL?>jquery/jquery.min.js"></script>
     <script>
         //llamamos al ID de la tabla para usar DataTable JQuery
         $(document).ready(function() {
             let datatableInstance = $('#tabla').DataTable({
                 // cargamos los datos consumiendo el Json con ajax 
                 "ajax": {
-                    "url": "../../Controlador/Medico/listar.php",
+                    "url": "<?php echo SERVERURL?>Controlador/Medico/listar.php",
                 },
                 "columnDefs": [{
                     "className": "dt-center",
@@ -250,7 +262,7 @@ require_once '../../plantilla/header.php';
         }
         //Funcion para verificar que la variable rs retorne true
         let grabar = function() {
-            let url = "../../Controlador/Medico/ControladorMedico.php";
+            let url = "<?php echo SERVERURL?>Controlador/Medico/ControladorMedico.php";
             let dataform = $("#formMedico").serialize();
             dataform = "accion=insertar&" + dataform;
             $.post(url, dataform).done((rs) => {
@@ -275,7 +287,7 @@ require_once '../../plantilla/header.php';
         }
 
         let actualizar = function() {
-            let urlE = "../../Controlador/Medico/ControladorMedico.php";
+            let urlE = "<?php echo SERVERURL?>Controlador/Medico/ControladorMedico.php";
             let dataformEd = $("#formEditarMedico").serialize();
             dataformEd = "accion=actualizar&" + dataformEd;
             $.post(urlE, dataformEd).done((rsu) => {
@@ -300,7 +312,7 @@ require_once '../../plantilla/header.php';
         }
 
         let eliminar = function() {
-            let urlEl = "../../Controlador/Medico/ControladorMedico.php";
+            let urlEl = "<?php echo SERVERURL?>Controlador/Medico/ControladorMedico.php";
             let dataformEl = $("#formEliminarMedico").serialize();
             dataformEl = "accion=eliminar&" + dataformEl;
             $.post(urlEl, dataformEl).done((rse) => {
@@ -317,6 +329,13 @@ require_once '../../plantilla/header.php';
                     $('.dataTable').DataTable().ajax.reload(null, false);
                 } else {
                     console.log(rse.mensaje)
+                    $("#EliminarMedicoModal").modal("hide");
+                   
+                   Swal.fire(
+                       'Oops!',
+                       'No se pudo eliminar su registro existen dependencias',
+                       'error'
+                   ); 
                 }
             })
         }

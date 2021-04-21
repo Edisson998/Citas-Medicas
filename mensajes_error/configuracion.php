@@ -1,4 +1,4 @@
 <?php
 
 
-const SERVERURL= "http://localhost/Citas%20Medicas/";
+const SERVERURL= "http://localhost/CitasMedicas/";

@@ -14,11 +14,25 @@ include '../../plantilla/header.php';
     <title>Citas Médicas</title>
 
     <style>
+        .mensaje {
+
+            font-family: Berlin Sans FB Demi;
+            padding: 5px;
+            color: #00aae4;
+            border-radius: 5px;
+            text-align: left;
+            font-size: 2.5em;
+            margin-bottom: 5px;
+
+        }
+
+
+
+
         span.green {
             background: #5EA226;
             border-radius: 0.6em;
             -moz-border-radius: 0.6em;
-            -webkit-border-radius: 0.6em;
             color: #ffffff;
             display: inline-block;
             font-weight: bold;
@@ -61,7 +75,7 @@ include '../../plantilla/header.php';
 <body>
     <div class="page-title">
         <div class="title_left">
-            <h3 style="padding-left: 10px;">Agendación de Citas</h3>
+            <h3 class="mensaje" style="padding-left: 10px;">Agendación de Citas</h3>
         </div>
 
     </div>
@@ -95,7 +109,7 @@ include '../../plantilla/header.php';
                             <div id="CalendarioCitas">
                                 <?php include 'agregar.php' ?>
                                 <?php include 'editar.php' ?>
-
+                               
                             </div>
                         </div>
                     </div>
@@ -109,9 +123,9 @@ include '../../plantilla/header.php';
 
 
 
-<script src="../../jquery/jquery.min.js"></script>
+<script src="<?php echo SERVERURL?>jquery/jquery.min.js"></script>
 
-<script src="../../Controlador/citas/calendario/js/calendario.js"></script>
+<script src="<?php echo SERVERURL?>Controlador/citas/calendario/js/calendario.js"></script>
 
 </html>
 <?php

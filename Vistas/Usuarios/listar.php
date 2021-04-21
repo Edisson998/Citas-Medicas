@@ -13,7 +13,7 @@ include '../../plantilla/header.php';
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap.min.css" rel="stylesheet">
-    <link href="../../sweetalert/sweetalert2.min.css" rel="stylesheet">
+    <link href="<?php echo SERVERURL?>sweetalert/sweetalert2.min.css" rel="stylesheet">
 
     <title>Usuarios</title>
 
@@ -28,6 +28,18 @@ include '../../plantilla/header.php';
             color: blue;
 
         }
+
+        .mensaje {
+	
+    font-family: Berlin Sans FB Demi;
+      padding:5px;
+      color:#00aae4;
+      border-radius:5px;
+      text-align: left;
+      font-size: 2.5em;
+      margin-bottom: 5px;
+    
+  } 
     </style>
 
 </head>
@@ -35,7 +47,7 @@ include '../../plantilla/header.php';
 <body>
     <div class="page-title">
         <div class="title_left">
-            <h3 style="padding-left: 10px;">Lista de Usuarios</h3>
+            <h3 class="mensaje" style="padding-left: 10px;">Lista de Usuarios</h3>
         </div>
     </div>
 
@@ -82,15 +94,15 @@ include '../../plantilla/header.php';
             </div>
         </div>
     </div>
-    <script src="../../sweetalert/sweetalert2.all.min.js"></script>
-    <script src="../../jquery/jquery.min.js"></script>
+    <script src="<?php echo SERVERURL?>sweetalert/sweetalert2.all.min.js"></script>
+    <script src="<?php echo SERVERURL?>jquery/jquery.min.js"></script>
     <script>
         //llamamos al ID de la tabla para usar DataTable JQuery
         $(document).ready(function() {
             let datatableInstance = $('#tabla').DataTable({
                 // cargamos los datos consumiendo el Json con ajax 
                 "ajax": {
-                    "url": "../../Controlador/Usuario/listar.php",
+                    "url": "<?php echo SERVERURL?>Controlador/Usuario/listar.php",
                 },
                 "columnDefs": [{
                     "className": "dt-center",
@@ -261,7 +273,7 @@ function validarFormularioUsu() {
         
         //Funcion para verificar que la variable rs retorne true
         let grabar = function() {
-            let url = "../../Controlador/Usuario/ControladorUsuario.php";
+            let url = "<?php echo SERVERURL?>Controlador/Usuario/ControladorUsuario.php";
             let dataform = $("#formUsuario").serialize();
             dataform = "accion=insertar&" + dataform;
             $.post(url, dataform).done((rs) => {
@@ -286,7 +298,7 @@ function validarFormularioUsu() {
         }
 
         let actualizar = function() {
-            let urlE = "../../Controlador/Usuario/ControladorUsuario.php";
+            let urlE = "<?php echo SERVERURL?>Controlador/Usuario/ControladorUsuario.php";
             let dataformEd = $("#formEditarUsuario").serialize();
             dataformEd = "accion=actualizar&" + dataformEd;
             $.post(urlE, dataformEd).done((rsu) => {
@@ -311,7 +323,7 @@ function validarFormularioUsu() {
         }
 
         let eliminar = function() {
-            let urlEl = "../../Controlador/Usuario/ControladorUsuario.php";
+            let urlEl = "<?php echo SERVERURL?>Controlador/Usuario/ControladorUsuario.php";
             let dataformEl = $("#formEliminarUsuario").serialize();
             dataformEl = "accion=eliminar&" + dataformEl;
             $.post(urlEl, dataformEl).done((rse) => {
@@ -328,6 +340,13 @@ function validarFormularioUsu() {
                     $('.dataTable').DataTable().ajax.reload(null, false);
                 } else {
                     console.log(rse.mensaje)
+                    $("#EliminarUsuarioModal").modal("hide");
+                    Swal.fire(
+                        'Error!',
+                        'La sesion esta activa no se puede eliminar el usuario!',
+                        'error'
+                    );
+                    
                 }
             })
         }

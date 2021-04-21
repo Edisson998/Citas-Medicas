@@ -6,11 +6,24 @@ include '../../plantilla/header.php';
 <html>
 
 <head>
-    <title>Filtrar datos por fechas usando datatables con PHP y MySQL</title>
-
-
+    <title>Reporte citas </title>
 
     <style>
+        table th {
+            background: #2A3F54;
+            color: white;
+        }
+
+        .showHideColumn {
+            cursor: pointer;
+            color: blue;
+
+        }
+
+        .btn-sm {
+            position: absolute !important;
+        }
+
         body {
             margin: 0;
             padding: 0;
@@ -25,75 +38,88 @@ include '../../plantilla/header.php';
             border-radius: 5px;
             margin-top: 25px;
         }
+
+        .mensaje {
+	
+      font-family: Berlin Sans FB Demi;
+      padding:5px;
+      color:#00aae4;
+      border-radius:5px;
+      text-align: left;
+      font-size: 2.5em;
+      margin-bottom: 5px;
+    
+  } 
     </style>
     <link href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="../../sweetalert/sweetalert2.min.css" rel="stylesheet">
 
-    <style>
-        table th {
-            background: #2A3F54;
-            color: white;
-        }
 
-        .showHideColumn {
-            cursor: pointer;
-            color: blue;
-
-        }
-
-        .btn-sm{
-            position: absolute !important;
-        }
-    </style>
 </head>
 
-<body background="img/12.jpg">
+<body>
 
 
-
-    <h1 align="center">Reporte de Citas Agendadas</h1>
-    <br />
-
-
-
-
-
-
-    <div class="table-responsive" style="overflow-x: hidden;">
-        <br />
-        <div class="row">
-            <div class="input-daterange col-sm-8 col-md-8">
-                <div class="col-md-4">
-                    <strong><label for="start_date">Desde: </label></strong>
-                    <input type="text" name="start_date" id="start_date" class="form-control" />
-                </div>
-                <div class="col-md-4">
-                    <strong><label for="end_date">Hasta: </label></strong>
-                    <input type="text" name="end_date" id="end_date" class="form-control" />
-                </div>
-                <div class="col-md-2">
-                    <button type="button" id="search" name="search" class="btn btn-info btn-sm" style="margin-top: 21.5%;"><i class="fa fa-search" aria-hidden="true"></i> B U S C A R</button>
-                                
-                </div>
-            </div>
+    <div class="page-title">
+        <div class="title_left">
+            <h3 class="mensaje" style="padding-left: 10px;">Reporte de citas agendadas</h3>
         </div>
-        <br />
-        <table id="order_data" class="table table-striped table-bordered dt-responsive nowrap contenido" style="width:100% ;">
-            <thead>
-                <tr>
-                    <th>Especialidad</th>
-                    <th>Medico</th>
-                    <th>Paciente</th>
-                    <th>Día de la cita</th>
-
-                </tr>
-            </thead>
-        </table>
-
     </div>
 
+    <div class="clearfix"></div>
 
 
+
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+                <div class="row">
+                    <div class="input-daterange col-sm-8 col-md-8">
+                        <div class="col-md-4">
+                            <strong><label for="start_date">Desde: </label></strong>
+                            <input type="text" name="start_date" id="start_date" class="form-control" />
+                        </div>
+                        <div class="col-md-4">
+                            <strong><label for="end_date">Hasta: </label></strong>
+                            <input type="text" name="end_date" id="end_date" class="form-control" />
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" id="search" name="search" class="btn btn-info btn-sm" style="margin-top: 21.5%;"><i class="fa fa-search" aria-hidden="true"></i> B U S C A R</button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <div class="card-box table-responsive">
+                            <table id="order_data" class="table table-striped table-bordered dt-responsive nowrap contenido" style="width:100% ;">
+                                <thead>
+                                    <tr>
+                                        <th>Especialidad</th>
+                                        <th>Medico</th>
+                                        <th>Paciente</th>
+                                        <th>Día de la cita</th>
+
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    </div>
 
 
 </body>
@@ -155,10 +181,12 @@ include '../../plantilla/header.php';
                 dom: 'Bfrtip',
                 buttons: [{
                     extend: 'pdfHtml5',
+                    title: 'REPORTE DE CITAS AGENDADAS',
                     text: '<i class="fa fa-file-pdf-o" aria-hidden="true"></i>',
                     titleAttr: 'Exportar a PDF',
                     className: 'btn btn-danger btn-sm',
-                    download: 'open'
+                    download: 'open',
+
                 }],
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"

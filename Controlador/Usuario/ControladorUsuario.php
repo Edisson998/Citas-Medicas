@@ -1,4 +1,6 @@
-<?php require_once "../../Modelo/conexion.php";
+<?php 
+session_start();
+require_once "../../Modelo/conexion.php";
 header("Content-Type: application/json"); // muestra el json còmo objeto
 
 $Obj = new Conexion();
@@ -79,11 +81,11 @@ if ($_POST) {
         } elseif ($_POST['accion'] == "eliminar") {
 
             $codigoEl = $_POST['idUsuEl'];
-            $sqle = "UPDATE tbl_usuario SET USU_ESTADO = 'I' where USU_ID = '$codigoEl'";
+            $sqle = "DELETE FROM tbl_usuario ' where USU_ID = '$codigoEl'";
             $querye = $pdo->prepare($sqle);
             $rse = $querye->execute();
 
-            if ($rse) {
+            if ($rse && $_SESSION['usuario'] == "") {
                 $response["success"] = true;
                 $response["mensaje"] = "Se elimino correctamente";
                 

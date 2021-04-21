@@ -71,7 +71,7 @@ if ($_POST) {
         } elseif ($_POST['accion'] == "eliminar") {
 
             $codigoEl = $_POST['idHorEl'];
-            $sqle = "UPDATE tbl_horario SET HOR_ESTADO = 'I' where HOR_ID = '$codigoEl'";
+            $sqle = "DELETE FROM tbl_horario  where HOR_ID = '$codigoEl'";
             $querye = $pdo->prepare($sqle);
             $rse = $querye->execute();
 

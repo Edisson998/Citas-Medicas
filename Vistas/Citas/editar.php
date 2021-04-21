@@ -11,7 +11,7 @@ $ob = new Conexion();
         margin-top: 0.8%;
     }
 </Style>
-<link href="../../sweetalert/sweetalert2.min.css" rel="stylesheet">
+<link href="<?php echo SERVERURL?>sweetalert/sweetalert2.min.css" rel="stylesheet">
 <div class="modal fade" id="EditarCita" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -22,7 +22,7 @@ $ob = new Conexion();
                 </button>
             </div>
             <div class="modal-body">
-                <form novalidate enctype="multipart/form-data" id="formEditarCita" action="../../Reportes/Citas/generarPdfCita.php" method="POST">
+                <form novalidate enctype="multipart/form-data" id="formEditarCita" target="_blank" action="../../Reportes/Citas/generarPdfCita.php" method="POST">
 
                     <div class="form-row">
 
@@ -79,8 +79,10 @@ $ob = new Conexion();
 
                         <div class="form-group col-md-6">
                             <label for="estadoCit">Estado de la Cita </label>
-                            <select class="form-control" id="estadoCit" name="estadoCit">
-                                <option selected id="estadoCita" value="">Seleccione una opcion</option>
+                            <select class="form-control inputE" id="estadoCit" name="estadoCit">
+                            <option selected id="estadoCita" >Seleccione una opción</option>
+                            
+                            <option value="PPA" >Por Atender</option>
                                 <option id="" value="PA">Atendido</option>
                                 <option id="" value="PNA">No Atendido</option>
                             </select>
@@ -88,8 +90,9 @@ $ob = new Conexion();
 
                         <div class="form-group col-md-6">
                             <label for="colorEstado">Color</label>
-                            <select class="form-control" id="colorEstado" name="colorEstado">
-                                <option selected id="estadoCita" value="">Seleccione una opcion</option>
+                            <select class="form-control inputE" id="colorEstado" name="colorEstado">
+                            <option selected id="colorCita" value="#000000">Seleccione una opción</option>
+                            <option  value="#000000">Negro</option>
                                 <option id="" value="#00FF00">Verde</option>
                                 <option id="" value="#FF0000">Rojo</option>
                             </select>
@@ -113,21 +116,22 @@ $ob = new Conexion();
             </div>
 
             <div class="modal-footer">
-                <br>
-                <a href="../../Reportes/Citas/generarPdfCita.php" class="btn btn-secondary btn-sm buttonGC" target="_blank" name="btnGenerarCita" id="btnGenerarCita"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Generar Comprobante</a>
+                
                 <br>
                 <button type="button" class="btn btn-info btn-sm " onclick="actualizar();" name="btnEditarCita" id="btnEditarCita"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Modificar</button>
                 <br>
                 <button type="button" class="btn btn-danger btn-sm " onclick="eliminar();" name="btnEliminarCita" id="btnEliminarCita"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</button>
 
                 <br>
+                <button type="submit" class="btn btn-secondary btn-sm "   name="btnExportar" id="btnExportar"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Generar Comprobante</button>
+                
             </div>
 
             </form>
         </div>
     </div>
 </div>
-<script src="../../jquery/jquery.min.js"></script>
-<script src="../../sweetalert/sweetalert2.all.min.js"></script>
-<script src="../../jquery/jquery-1.10.2.min.js"></script>
-<script src="../../Controlador/citas/calendario/js/calendario.js"></script>
+<script src="<?php echo SERVERURL?>jquery/jquery.min.js"></script>
+<script src="<?php echo SERVERURL?>sweetalert/sweetalert2.all.min.js"></script>
+<script src="<?php echo SERVERURL?>jquery/jquery-1.10.2.min.js"></script>
+<script src="<?php echo SERVERURL?>Controlador/citas/calendario/js/calendario.js"></script>
