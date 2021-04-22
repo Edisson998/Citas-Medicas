@@ -1,21 +1,16 @@
 <?php
 session_start();
-require_once '../../plantilla/header.php';
+include '../../plantilla/header.php';
 ?>
 
 <!doctype html>
 <html lang="en">
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<head>    
     <link href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo SERVERURL ?>sweetalert/sweetalert2.min.css" rel="stylesheet">
 
-    <title>Especialidades</title>
+    <title>Médicos</title>
 
     <style>
         table th {
@@ -26,7 +21,6 @@ require_once '../../plantilla/header.php';
         .showHideColumn {
             cursor: pointer;
             color: blue;
-
         }
 
         .mensaje {

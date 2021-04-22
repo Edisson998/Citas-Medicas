@@ -1,6 +1,4 @@
-<?php
-$con = mysqli_connect('localhost', 'root', '', 'citasmedicas');
-?>
+
 <div class="modal fade" id="EditarPacienteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">

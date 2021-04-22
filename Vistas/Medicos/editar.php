@@ -1,5 +1,7 @@
 <?php
-$con = mysqli_connect('localhost', 'root', '', 'citasmedicas');
+require_once '../../Modelo/conexion.php';
+
+$ob = new Conexion();
 ?>
 <div class="modal fade" id="EditarMedicoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -52,12 +54,16 @@ $con = mysqli_connect('localhost', 'root', '', 'citasmedicas');
                             <select class="form-control " name="Ed_especialidad" id="Eespecialidad">
                                 
                                 <option selected="" id="E_especialidad" value="">Seleccione una opcion</option>
-                                <?php $q = "SELECT * FROM tbl_especialidades";
-                                $que = $con->query($q);
-                                while ($val = $que->fetch_assoc()) {
-                                    echo ' <option value="' . $val['ESP_ID'] . '">' . $val['EP_DESCRIPCION'] . '</option>';
-                                }
+                                <?php
+                                $con = $ob->Conectar();
+                                $q = "SELECT ESP_ID, EP_DESCRIPCION FROM tbl_especialidades";
+                                $que = $con->prepare($q);
+                                $que->execute();
+                                $result = $que->fetchAll();
+                                foreach ($result  as $val) {
                                 ?>
+                                    <option value="<?php echo $val['ESP_ID'] ?>"><?php echo $val['EP_DESCRIPCION']  ?> </option>
+                                <?php }  ?>
                             </select>
 
                            

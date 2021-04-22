@@ -21,7 +21,6 @@ include '../../plantilla/header.php';
         .showHideColumn {
             cursor: pointer;
             color: blue;
-
         }
 
         .mensaje {
