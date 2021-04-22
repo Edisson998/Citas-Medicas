@@ -13,7 +13,7 @@ $ob = new Conexion();
                 </button>
             </div>
             <div class="modal-body">
-                <form novalidate enctype="multipart/form-data" id="formMedico" method="POST">
+                <form novalidate enctype="multipart/form-data" id="formMedico" name="formuMedico" method="POST">
                     <div class="form-row">
 
                         <div class="form-group col-md-6">
@@ -107,7 +107,7 @@ $ob = new Conexion();
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-close" aria-hidden="true"></i> Cerrar</button>
-                <button type="button" class="btn btn-primary" name="btnGuardarMedico" id="btnGuardarMedico"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
+                <button type="button" class="btn btn-primary" onclick="validarFormularioMed();" name="btnGuardarMedico" id="btnGuardarMedico"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar</button>
             </div>
             </form>
         </div>

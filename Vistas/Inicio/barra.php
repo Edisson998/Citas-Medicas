@@ -93,6 +93,3 @@ $hastad = $fecha_actual.'-12-31 11:59:00';
 $sql = "select COUNT(*) from tbl_cita where start between '$desded' and '$hastad'";
 $result = $co->query($sql);//$pdo sería el objeto conexión
 $diciembre = $result->fetchColumn();
-
-
-?>

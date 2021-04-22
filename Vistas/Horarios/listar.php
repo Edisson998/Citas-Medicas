@@ -13,7 +13,7 @@ include '../../plantilla/header.php';
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo SERVERURL?>sweetalert/sweetalert2.min.css" rel="stylesheet">
+    <link href="<?php echo SERVERURL ?>sweetalert/sweetalert2.min.css" rel="stylesheet">
 
     <title>Horarios</title>
 
@@ -30,16 +30,16 @@ include '../../plantilla/header.php';
         }
 
         .mensaje {
-	
-    font-family: Berlin Sans FB Demi;
-      padding:5px;
-      color:#00aae4;
-      border-radius:5px;
-      text-align: left;
-      font-size: 2.5em;
-      margin-bottom: 5px;
-    
-  } 
+
+            font-family: Berlin Sans FB Demi;
+            padding: 5px;
+            color: #00aae4;
+            border-radius: 5px;
+            text-align: left;
+            font-size: 2.5em;
+            margin-bottom: 5px;
+
+        }
     </style>
 
 </head>
@@ -67,20 +67,6 @@ include '../../plantilla/header.php';
             <div class="x_content">
                 <div class="row">
                     <div class="col-sm-12">
-                        <!--  <b> Mostrar / Ocultar Columnas: </b>
-                         <a class="showHideColumn" data-columindex="0">Nombres</a> -
-                        <a class="showHideColumn" data-columindex="1">Apellido Paterno</a> -
-                        <a class="showHideColumn" data-columindex="2">Apellido Materno</a> -
-                        <a class="showHideColumn" data-columindex="3">Tipo de Documento</a> -
-                        <a class="showHideColumn" data-columindex="4">Documento de Identidad</a> -
-                        <a class="showHideColumn" data-columindex="5">Especialidad</a> -
-                        <a class="showHideColumn" data-columindex="6">Género</a> -
-                        <a class="showHideColumn" data-columindex="7">Fecha de Nacimiento</a> -
-                        <a class="showHideColumn" data-columindex="8">Dirección</a> -
-                        <a class="showHideColumn" data-columindex="9">Correo Electrónico</a> -
-                        <a class="showHideColumn" data-columindex="10">Teléfono</a> -
-                        <a class="showHideColumn" data-columindex="11">Estado</a>
-                        <br>-->
                         <div class="card-box table-responsive">
                             <table id="tabla" class="table table-striped table-bordered dt-responsive nowrap contenido" style="width:100% ;">
 
@@ -106,15 +92,15 @@ include '../../plantilla/header.php';
 
     </div>
     </div>
-    <script src="<?php echo SERVERURL?>sweetalert/sweetalert2.all.min.js"></script>
-    <script src="<?php echo SERVERURL?>jquery/jquery.min.js"></script>
+    <script src="<?php echo SERVERURL ?>sweetalert/sweetalert2.all.min.js"></script>
+    <script src="<?php echo SERVERURL ?>jquery/jquery.min.js"></script>
     <script>
         //llamamos al ID de la tabla para usar DataTable JQuery
         $(document).ready(function() {
             let datatableInstance = $('#tabla').DataTable({
                 // cargamos los datos Json con ajax 
                 "ajax": {
-                    "url": "<?php echo SERVERURL?>Controlador/Horarios/listar.php",
+                    "url": "<?php echo SERVERURL ?>Controlador/Horarios/listar.php",
                 },
                 "columnDefs": [{
                     "className": "dt-center",
@@ -151,16 +137,6 @@ include '../../plantilla/header.php';
                 responsive: true
 
             });
-
-
-
-            //Escojemos la clase showHideColumn para mostrar u ocultar las columnas
-            //cuando se haga click 
-            /*   $('.showHideColumn').on('click', function() {
-                   var tableColumn = datatableInstance.column($(this).attr('data-columindex'));
-                   tableColumn.visible(!tableColumn.visible());
-               });*/
-
 
             $("#btnEditarHorario").on("click", function(e) {
                 e.preventDefault();
@@ -203,16 +179,16 @@ include '../../plantilla/header.php';
             });
         }
 
-               
+
 
         let Obtener_Id_Eliminar = function(tbody, datatableInstance) {
             $(tbody).on('click', 'button.eliminar', function() {
                 var data = datatableInstance.row($(this).parents('tr')).data();
-                 console.log(data); 
+                console.log(data);
 
 
                 //Capturamos los valores de la base en cada campo de texto del modal editar
-                       
+
                 let idHor = $("#formEliminarHorario #idHorEl").val(data.HOR_ID)
 
 
@@ -234,7 +210,7 @@ include '../../plantilla/header.php';
                     showCloseButton: true
 
                 })
-               
+
             } else if (FormularioHorario.d_ingreso.value === "") {
                 Swal.fire({
                     title: 'Todos los campos son requeridos',
@@ -279,7 +255,7 @@ include '../../plantilla/header.php';
 
         //Funcion para verificar que la variable rs retorne true
         let grabar = function() {
-            let url = "<?php echo SERVERURL?>Controlador/Horarios/ControladorHorarios.php";
+            let url = "<?php echo SERVERURL ?>Controlador/Horarios/ControladorHorarios.php";
             let dataform = $("#formHorario").serialize();
             dataform = "accion=insertar&" + dataform;
             $.post(url, dataform).done((rs) => {
@@ -302,12 +278,12 @@ include '../../plantilla/header.php';
         }
 
         let actualizar = function() {
-            let urlE = "<?php echo SERVERURL?>Controlador/Horarios/ControladorHorarios.php";
+            let urlE = "<?php echo SERVERURL ?>Controlador/Horarios/ControladorHorarios.php";
             let dataformEd = $("#formEditarHorario").serialize();
             dataformEd = "accion=actualizar&" + dataformEd;
             $.post(urlE, dataformEd).done((rsu) => {
                 console.log(rsu)
-                
+
                 if (rsu.success == true) {
                     // alert("Registro Modificado")                  
                     $("#EditarHorariodModal").modal('hide');
@@ -326,7 +302,7 @@ include '../../plantilla/header.php';
         }
 
         let eliminar = function() {
-            let urlEl = "<?php echo SERVERURL?>Controlador/Horarios/ControladorHorarios.php";
+            let urlEl = "<?php echo SERVERURL ?>Controlador/Horarios/ControladorHorarios.php";
             let dataformEl = $("#formEliminarHorario").serialize();
             dataformEl = "accion=eliminar&" + dataformEl;
             $.post(urlEl, dataformEl).done((rse) => {

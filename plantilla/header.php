@@ -12,14 +12,14 @@ if ($usuario == "") {
   header('Location: ../../Vistas/Login/login.php');
 } else {
 
-   //sino, calculamos el tiempo transcurrido
-   $fechaGuardada = $_SESSION["ultimoAcceso"];
-   $ahora = date("Y-n-j H:i:s");
-   $tiempo_transcurrido = (strtotime($ahora)-strtotime($fechaGuardada));
+  //sino, calculamos el tiempo transcurrido
+  $fechaGuardada = $_SESSION["ultimoAcceso"];
+  $ahora = date("Y-n-j H:i:s");
+  $tiempo_transcurrido = (strtotime($ahora) - strtotime($fechaGuardada));
 
-   //comparamos el tiempo transcurrido
+  //comparamos el tiempo transcurrido
 
-  if ($tiempo_transcurrido >= 100) {
+  if ($tiempo_transcurrido >= 280) {
 
 
     header('Location: ../../Controlador/Login/cerrar.php');
@@ -30,7 +30,7 @@ if ($usuario == "") {
     $query->execute();
     $result = $query->fetchAll();
 
- 
+
     foreach ($result as $res) {
       $rol = $res['ROL_ID'];
       $nombre = $res['USU_NOMBRES'];
@@ -41,49 +41,49 @@ if ($usuario == "") {
 
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <!-- Meta, title, CSS, favicons, etc. -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <!-- Meta, title, CSS, favicons, etc. -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Menú</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/css/bootstrap-select.min.css">
-  <!-- Bootstrap -->
-  <link href="<?php echo SERVERURL?>Complementos_Plantilla/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Font Awesome -->
-  <link href="<?php echo SERVERURL?>Complementos_Plantilla/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <!-- NProgress -->
-  <link href="<?php echo SERVERURL?>Complementos_Plantilla/vendors/nprogress/nprogress.css" rel="stylesheet">
-  <!-- iCheck -->
-  <link href="<?php echo SERVERURL?>Complementos_Plantilla/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+      <title>Menú</title>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/css/bootstrap-select.min.css">
+      <!-- Bootstrap -->
+      <link href="<?php echo SERVERURL ?>Complementos_Plantilla/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Font Awesome -->
+      <link href="<?php echo SERVERURL ?>Complementos_Plantilla/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+      <!-- NProgress -->
+      <link href="<?php echo SERVERURL ?>Complementos_Plantilla/vendors/nprogress/nprogress.css" rel="stylesheet">
+      <!-- iCheck -->
+      <link href="<?php echo SERVERURL ?>Complementos_Plantilla/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 
-  <!-- bootstrap-progressbar -->
-  <link href="<?php echo SERVERURL?>Complementos_Plantilla/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-  <!-- JQVMap -->
-  <link href="<?php echo SERVERURL?>Complementos_Plantilla/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
-  <!-- bootstrap-daterangepicker -->
-  <link href="<?php echo SERVERURL?>Complementos_Plantilla/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+      <!-- bootstrap-progressbar -->
+      <link href="<?php echo SERVERURL ?>Complementos_Plantilla/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+      <!-- JQVMap -->
+      <link href="<?php echo SERVERURL ?>Complementos_Plantilla/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+      <!-- bootstrap-daterangepicker -->
+      <link href="<?php echo SERVERURL ?>Complementos_Plantilla/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
-  <!-- Custom Theme Style -->
-  <link href="<?php echo SERVERURL?>Complementos_Plantilla/build/css/custom.min.css" rel="stylesheet">
+      <!-- Custom Theme Style -->
+      <link href="<?php echo SERVERURL ?>Complementos_Plantilla/build/css/custom.min.css" rel="stylesheet">
 
-  <!-- Usamos el icono que se visualizara en el browser!-->
-  <link rel="icon" type="image/x-svg" href="<?php echo SERVERURL?>img/icono.svg">
+      <!-- Usamos el icono que se visualizara en el browser!-->
+      <link rel="icon" type="image/x-svg" href="<?php echo SERVERURL ?>img/icono.svg">
 
-  <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
+      <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="<?php echo SERVERURL?>Controlador/citas/calendario/css/fullcalendar.min.css">
+      <link rel="stylesheet" href="<?php echo SERVERURL ?>Controlador/citas/calendario/css/fullcalendar.min.css">
 
-  <link rel="stylesheet" href="<?php echo SERVERURL?>PluginsReportes/datepicker/datepicker3.css">
+      <link rel="stylesheet" href="<?php echo SERVERURL ?>PluginsReportes/datepicker/datepicker3.css">
 
 
 
-</head>
+    </head>
 
     <?php if ($rol == 1) { ?>
 
@@ -118,7 +118,7 @@ if ($usuario == "") {
 
                     <h3>Inicio</h3>
                     <ul class="nav side-menu">
-                      <li><a href="<?php echo SERVERURL?>Vistas/Inicio/contenido_vista.php"><i class="fa fa-home"></i> Inicio</a></li>
+                      <li><a href="<?php echo SERVERURL ?>Vistas/Inicio/contenido_vista.php"><i class="fa fa-home"></i> Inicio</a></li>
                     </ul>
 
                   </div>
@@ -128,17 +128,17 @@ if ($usuario == "") {
                       <li><a><i class="fa fa-cogs"></i>Ajustes<span class="fa fa-chevron-down"></span></a>
 
                         <ul class="nav child_menu">
-                          <li><a href="<?php echo SERVERURL?>Vistas/Usuarios/listar.php">Usuarios</a></li>
-                          <li><a href="<?php echo SERVERURL?>Vistas/Medicos/listar.php">Médicos</a></li>
-                          <li><a href="<?php echo SERVERURL?>Vistas/Especialidades/listar.php">Especialidades</a></li>
-                          <li><a href="<?php echo SERVERURL?>Vistas/Horarios/listar.php">Horarios</a></li>
-                          <li><a href="<?php echo SERVERURL?>Vistas/Pacientes/listar.php">Pacientes</a></li>
-                          <li><a href="<?php echo SERVERURL?>Vistas/Citas/calendario.php">Citas</a></li>
+                          <li><a href="<?php echo SERVERURL ?>Vistas/Usuarios/listar.php">Usuarios</a></li>
+                          <li><a href="<?php echo SERVERURL ?>Vistas/Medicos/listar.php">Médicos</a></li>
+                          <li><a href="<?php echo SERVERURL ?>Vistas/Especialidades/listar.php">Especialidades</a></li>
+                          <li><a href="<?php echo SERVERURL ?>Vistas/Horarios/listar.php">Horarios</a></li>
+                          <li><a href="<?php echo SERVERURL ?>Vistas/Pacientes/listar.php">Pacientes</a></li>
+                          <li><a href="<?php echo SERVERURL ?>Vistas/Citas/calendario.php">Citas</a></li>
                         </ul>
                       </li>
                       <li><a><i class="fa fa-file-archive-o"></i> Reportes <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                          <li><a href="<?php echo SERVERURL?>Vistas/Reportes/reporteCita.php">Citas</a></li>
+                          <li><a href="<?php echo SERVERURL ?>Vistas/Reportes/reporteCita.php">Citas</a></li>
 
                         </ul>
                       </li>
@@ -150,8 +150,8 @@ if ($usuario == "") {
 
                 <!-- /menu footer buttons  -->
                 <div class="sidebar-footer hidden-small">
-                
-                  <a data-toggle="tooltip" data-placement="top" title="Cerrar Sesión" href="<?php echo SERVERURL?>Controlador/Login/cerrar.php">
+
+                  <a data-toggle="tooltip" data-placement="top" title="Cerrar Sesión" href="<?php echo SERVERURL ?>Controlador/Login/cerrar.php">
                     <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                   </a>
                 </div>
@@ -172,8 +172,7 @@ if ($usuario == "") {
                         <?php echo $nombre . ' ' . $apellidoP . ' ' . $apellidoM; ?>
                       </a>
                       <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="javascript:;"> Profile</a>
-                        <a class="dropdown-item" href="<?php echo SERVERURL?>Controlador/Login/cerrar.php"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión</a>
+                        <a class="dropdown-item" href="<?php echo SERVERURL ?>Controlador/Login/cerrar.php"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión</a>
                       </div>
                     </li>
 
@@ -218,33 +217,33 @@ if ($usuario == "") {
                           <!-- sidebar menu -->
                           <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                             <div class="menu_section">
-                            <h3>Inicio</h3>
-                    <ul class="nav side-menu">
-                      <li><a href="<?php echo SERVERURL?>Vistas/Inicio/contenido_vista.php"><i class="fa fa-home"></i> Inicio</a></li>
-                    </ul>
+                              <h3>Inicio</h3>
+                              <ul class="nav side-menu">
+                                <li><a href="<?php echo SERVERURL ?>Vistas/Inicio/contenido_vista.php"><i class="fa fa-home"></i> Inicio</a></li>
+                              </ul>
                             </div>
 
                             <div class="menu_section">
-                    <h3>Departamentos</h3>
-                    <ul class="nav side-menu">
-                      <li><a><i class="fa fa-cogs"></i>Acciones<span class="fa fa-chevron-down"></span></a>
+                              <h3>Departamentos</h3>
+                              <ul class="nav side-menu">
+                                <li><a><i class="fa fa-cogs"></i>Acciones<span class="fa fa-chevron-down"></span></a>
 
-                        <ul class="nav child_menu">                         
-                          <li><a href="<?php echo SERVERURL?>Vistas/Pacientes/listar.php">Pacientes</a></li>
-                          <li><a href="<?php echo SERVERURL?>Vistas/Citas/calendario.php">Citas</a></li>
-                        </ul>
-                      </li>
-                      <li><a><i class="fa fa-file-archive-o"></i> Reportes <span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-                          <li><a href="<?php echo SERVERURL?>Vistas/Reportes/reporteCita.php">Citas</a></li>
+                                  <ul class="nav child_menu">
+                                    <li><a href="<?php echo SERVERURL ?>Vistas/Pacientes/listar.php">Pacientes</a></li>
+                                    <li><a href="<?php echo SERVERURL ?>Vistas/Citas/calendario.php">Citas</a></li>
+                                  </ul>
+                                </li>
+                                <li><a><i class="fa fa-file-archive-o"></i> Reportes <span class="fa fa-chevron-down"></span></a>
+                                  <ul class="nav child_menu">
+                                    <li><a href="<?php echo SERVERURL ?>Vistas/Reportes/reporteCita.php">Citas</a></li>
 
-                        </ul>
-                      </li>
-                    </ul>
-                  </div>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </div>
 
 
-                            
+
 
                           </div>
                           <!-- /sidebar menu -->
@@ -281,8 +280,7 @@ if ($usuario == "") {
                                   <?php echo $nombre . ' ' . $apellidoP . ' ' . $apellidoM; ?>
                                 </a>
                                 <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                                  <a class="dropdown-item" href="javascript:;"> Profile</a>
-                                  <a class="dropdown-item" href="<?php echo SERVERURL?>Controlador/Login/cerrar.php"><i class="fa fa-sign-out pull-right"></i>Cerrar Sesión</a>
+                                  <a class="dropdown-item" href="<?php echo SERVERURL ?>Controlador/Login/cerrar.php"><i class="fa fa-sign-out pull-right"></i>Cerrar Sesión</a>
                                 </div>
                               </li>
                             </ul>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-11-2020 a las 01:33:33
+-- Tiempo de generación: 22-04-2021 a las 18:11:10
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.4.10
 
@@ -20,6 +20,20 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `citasmedicas`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `reportecita`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `reportecita` (
+`CIT_ID` int(11)
+,`EP_DESCRIPCION` varchar(150)
+,`Nombres` varchar(301)
+,`NombresP` varchar(301)
+,`start` date
+);
 
 -- --------------------------------------------------------
 
@@ -45,13 +59,29 @@ CREATE TABLE `tbl_cita` (
   `ESP_ID` int(11) DEFAULT NULL,
   `MED_ID` int(11) DEFAULT NULL,
   `PAC_ID` int(11) DEFAULT NULL,
-  `CIT_FECHA` date DEFAULT NULL,
-  `CIT_HORA_INICIO` varchar(20) DEFAULT NULL,
-  `CIT_HORA_FIN` varchar(20) DEFAULT NULL,
+  `start` datetime DEFAULT NULL,
+  `end` datetime DEFAULT NULL,
   `CIT_OBSERVACIONES` varchar(500) DEFAULT NULL,
   `CIT_ESTADO` char(20) DEFAULT NULL,
-  `CIT_CREACION_REGISTRO` datetime DEFAULT NULL
+  `CIT_CREACION_REGISTRO` datetime DEFAULT NULL,
+  `textColor` varchar(20) DEFAULT NULL,
+  `CIT_ESTADO_CITA` char(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tbl_cita`
+--
+
+INSERT INTO `tbl_cita` (`CIT_ID`, `ESP_ID`, `MED_ID`, `PAC_ID`, `start`, `end`, `CIT_OBSERVACIONES`, `CIT_ESTADO`, `CIT_CREACION_REGISTRO`, `textColor`, `CIT_ESTADO_CITA`) VALUES
+(1, 3, 3, 1, '2021-03-22 13:30:00', '2021-03-22 13:30:00', 'Venir con muestras y en ayunas', 'A', '2021-01-21 00:00:00', '#00FF00', 'PA'),
+(10, 2, 5, 1, '2021-03-22 10:30:00', '2021-03-22 10:30:00', '', 'A', '2021-01-21 00:00:00', '#00FF00', 'PA'),
+(58, 3, 4, 2, '2021-03-22 12:30:00', '2021-03-22 12:30:00', '', 'A', '2021-01-21 00:00:00', '#00FF00', 'PA'),
+(69, 3, 6, 3, '2021-03-22 14:30:00', '2021-03-22 14:30:00', '', 'A', '2021-03-11 00:00:00', '#00FF00', 'PA'),
+(70, 6, 7, 4, '2021-03-22 10:30:00', '2021-03-22 10:30:00', 'Venir en ayunas', 'A', '2021-03-12 00:00:00', '#00FF00', 'PA'),
+(72, 7, 7, 5, '2021-03-17 10:30:00', '2021-03-17 10:30:00', 'el paciente debe venir en ayunas', 'A', '2021-03-26 00:00:00', '#00FF00', 'PA'),
+(76, 3, 4, 1, '2021-03-19 10:00:00', '2021-03-19 10:00:00', '', 'A', '2021-03-31 00:00:00', '#00FF00', 'PA'),
+(77, 4, 8, 3, '2021-03-18 10:00:00', '2021-03-18 10:00:00', '', 'A', '2021-03-31 00:00:00', '#00FF00', 'PA'),
+(79, 6, 7, 2, '2021-04-24 10:40:00', '2021-04-24 10:40:00', '', 'A', '2021-04-04 00:00:00', '#00FF00', 'PA');
 
 -- --------------------------------------------------------
 
@@ -87,10 +117,12 @@ CREATE TABLE `tbl_especialidades` (
 --
 
 INSERT INTO `tbl_especialidades` (`ESP_ID`, `EP_DESCRIPCION`, `ESP_ESTADO`, `ESP_CREACION_REGISTRO`) VALUES
-(1, 'Médico General', 'A', '2020-10-31 20:56:13'),
-(2, 'Ginecólogo', 'A', '2020-10-31 20:56:48'),
-(3, 'Otorrinolaringologo', 'A', '2020-10-31 20:57:05'),
-(4, 'Pedíatra', 'A', '2020-10-31 20:57:18');
+(2, 'Ginecología', 'A', '2020-10-31 20:56:48'),
+(3, 'Otorrinolaringología', 'A', '2020-10-31 20:57:05'),
+(4, 'Pedíatra', 'A', '2020-10-31 20:57:18'),
+(6, 'Odontología', 'A', '2021-03-12 00:00:00'),
+(7, 'Podología', 'A', '2021-03-18 00:00:00'),
+(9, 'Medicina General', 'A', '2021-04-20 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -101,11 +133,24 @@ INSERT INTO `tbl_especialidades` (`ESP_ID`, `EP_DESCRIPCION`, `ESP_ESTADO`, `ESP
 CREATE TABLE `tbl_horario` (
   `HOR_ID` int(11) NOT NULL,
   `MED_ID` int(11) DEFAULT NULL,
-  `HOR_FECHA` date DEFAULT NULL,
-  `HOR_INGRESO` varchar(20) DEFAULT NULL,
-  `HOR_SALIDA` varchar(20) DEFAULT NULL,
+  `HOR_DIA_INGRESO` varchar(50) DEFAULT NULL,
+  `HOR_DIA_SALIDA` varchar(20) DEFAULT NULL,
+  `HOR_HORA_INGRESO` varchar(20) DEFAULT NULL,
+  `HOR_HORA_SALIDA` varchar(20) DEFAULT NULL,
   `HOR_ESTADO` char(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tbl_horario`
+--
+
+INSERT INTO `tbl_horario` (`HOR_ID`, `MED_ID`, `HOR_DIA_INGRESO`, `HOR_DIA_SALIDA`, `HOR_HORA_INGRESO`, `HOR_HORA_SALIDA`, `HOR_ESTADO`) VALUES
+(2, 7, 'Lu', 'Mi', '15:48', '17:50', 'A'),
+(3, 2, 'Ma', 'Sa', '14:45', '17:50', 'A'),
+(4, 6, 'Mi', 'Do', '13:30', '20:30', 'A'),
+(5, 4, 'Mi', 'Sa', '13:30', '17:30', 'A'),
+(7, 5, 'Ma', 'Sa', '10:30', '16:30', 'A'),
+(8, 8, 'Ju', 'Do', '08:00', '14:00', 'A');
 
 -- --------------------------------------------------------
 
@@ -136,12 +181,13 @@ CREATE TABLE `tbl_medico` (
 --
 
 INSERT INTO `tbl_medico` (`MED_ID`, `EMP_ID`, `ESP_ID`, `MED_NOMBRES`, `MED_P_APELLIDO`, `MED_S_APELLIDO`, `MED_GENERO`, `MED_FECHA_NAC`, `MED_DIRECCION`, `MED_CORREO`, `MED_TELEFONO`, `MED_TIPO_DNI`, `MED_DNI`, `MED_ESTADO`, `MED_CREACION_REGISTRO`) VALUES
-(1, NULL, 1, 'Lenin', 'Campoverde', 'Antaneda', 'Ma', '2020-10-02', 'Cotocollao', 'lenin@gmail.com', '984667155', 'P', 'POSD-1726', 'A', '2020-10-24 17:03:14'),
-(2, NULL, 2, 'Mirko', 'Viteri', 'Salarza', 'Ma', '2020-10-23', 'Argelia', 'cerdito1998@hotmail.com', '985874455', 'RU', '1728596985001', 'A', '2020-10-25 00:00:00'),
-(3, NULL, 3, 'Pepe', 'Chalen', 'Gorrion', 'Ma', '2020-10-23', 'Solanda', 'cerdito1998@hotmail.com', '985874455', 'C', '1728596985', 'I', '2020-10-25 00:00:00'),
-(4, NULL, 3, 'Patty', 'Bastidas', 'Intriago', 'Ma', '2020-10-16', 'cordova', 'patty@gmail.com', '985820000', 'C', '1755626962', 'I', '2020-10-29 00:00:00'),
-(5, NULL, 2, 'Danilo', 'Pacas', 'Portilo', 'Ma', '2020-10-08', 'Las malvas', 'danilo@gmail.com', '984667150', 'C', '1728859696', 'A', '2020-10-29 00:00:00'),
-(6, NULL, 3, 'Maria', 'Clerque', 'Santamaria', 'Ma', '2020-10-04', 'Guamani', 'mariaclerque@gmail.com', '952525412', 'P', 'PRD-17455', 'A', '2020-10-29 00:00:00');
+(2, NULL, 2, 'Mirko', 'Viteri', 'Salarza', 'Ma', '2020-10-23', 'Argelia', 'cerdito1998@hotmail.com', '985874455', 'R', '1728596985001', 'A', '2020-10-25 00:00:00'),
+(3, NULL, 7, 'Pepe', 'Chalen', 'Gorrion', 'Ma', '2020-10-23', 'Solanda', 'cerdito1998@hotmail.com', '985874455', 'Cé', '1728596985', 'A', '2020-10-25 00:00:00'),
+(4, NULL, 3, 'Patty', 'Bastidas', 'Intriago', 'F', '2020-10-16', 'cordova', 'patty@gmail.com', '985820000', 'RU', '1755626962', 'A', '2020-10-29 00:00:00'),
+(5, NULL, 2, 'Danilo', 'Pacas', 'Portillo', 'Ma', '2020-10-08', 'La keneddy', 'danilo@gmail.com', '984667150', 'RU', '1728859657', 'A', '2020-10-29 00:00:00'),
+(6, NULL, 3, 'Maria', 'Clerque', 'Santamaria', 'F', '2020-10-04', 'Guamani', 'mariaclerque@gmail.com', '952525412', 'P', 'PRD-17455', 'A', '2020-10-29 00:00:00'),
+(7, NULL, 6, 'Paul', 'Barrionuevo', 'Cajas', 'M', '1965-03-04', 'Conocoto', 'paul@medicenter.com', '965826578', 'R', '1726285964001', 'A', '2021-03-12 00:00:00'),
+(8, NULL, 4, 'Matias', 'Castro', 'Villareal', 'Ma', '1992-03-12', 'Cotocollao', 'mati@gmail.com', '9874569888', 'RU', '172368974', 'A', '2021-03-18 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -164,6 +210,18 @@ CREATE TABLE `tbl_paciente` (
   `PAC_ESTADO` char(1) DEFAULT NULL,
   `PAC_CREACION_REGISTRO` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tbl_paciente`
+--
+
+INSERT INTO `tbl_paciente` (`PAC_ID`, `PAC_NOMBRES`, `PAC_P_APELLIDO`, `PAC_S_APELLIDO`, `PAC_GENERO`, `PAC_FECHA_NAC`, `PAC_DIRECCION`, `PAC_CORREO`, `PAC_TELEFONO`, `PAC_TIPO_DNI`, `PAC_DNI`, `PAC_ESTADO`, `PAC_CREACION_REGISTRO`) VALUES
+(1, 'Camilo', 'Paz', 'Villacrez', 'M', '1997-11-06', 'Av Venezuela y nicaragua', 'camilo@hotmail.com', '987458698', 'C', '1726587632', 'A', '2021-01-21 00:00:00'),
+(2, 'Maria del Carmen', 'Benalcazar', 'Zurita', 'F', '1995-01-01', 'Av Quitumbe ñam y felicio angulo', 'mari@hotmail.com', '986974562', 'C', '1726274896', 'A', '2021-01-22 00:00:00'),
+(3, 'Valentina', 'Rojas', 'Ramirez', 'F', '1985-12-31', 'Manabi y roca fuerte', 'vale@hotmail.com', '974856856', 'C', '1726270437', 'A', '2021-02-02 00:00:00'),
+(4, 'Maribel', 'Macias', 'Vargas', 'F', '2000-03-01', 'Fenicio Angulo y Quitumbe ñan ', 'mari@hotmail.com', '984285588', 'C', '1726270428', 'A', '2021-03-12 00:00:00'),
+(5, 'Angel', 'Fabiani', 'Palma', 'M', '1998-08-21', 'La santiago', 'angel@gmail.com', '9856745636', 'P', 'padsd58856', 'A', '2021-03-26 00:00:00'),
+(6, 'Alberto ', 'Aguilera', 'Morejon', 'M', '1980-02-08', 'Av teniente hugo ortiz y av solanda', 'albertito@hotmail.com', '958636589', 'C', '1458969856', 'A', '2021-04-22 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -251,8 +309,17 @@ CREATE TABLE `tbl_usuario` (
 --
 
 INSERT INTO `tbl_usuario` (`USU_ID`, `ROL_ID`, `USU_CORREO`, `USU_CLAVE`, `USU_NOMBRES`, `USU_P_PELLIDO`, `USU_S_APELLIDO`, `USU_ESTADO`, `USU_CREACION_REGISTRO`) VALUES
-(1, 1, 'edison', 'Efnc1726', 'Edison Fabricio', 'Narváez', 'Cedeño', 'A', '2020-10-31 21:03:16'),
-(2, 2, 'fabricio', 'Efnc1726', 'Fabricio Martin', 'Polo', 'Galarza', 'A', '2020-11-07 17:14:55');
+(2, 1, 'edison', 'NTgzYjQ2MGI0MzZmNGUxNGQ2YmNiYWY4NjVmODE1ZDY=', 'Edison ', 'Narváez', 'Cedeño', 'A', '2020-11-07 17:14:55'),
+(8, 2, 'recepcion@hotmail.com', 'NjNmMGNiNjE5YmQ1Y2FmZDdhYjhkNTc0YmZlMDgxZDg=', 'Steven', 'Castro', 'Morillo', 'A', '2021-04-17 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `reportecita`
+--
+DROP TABLE IF EXISTS `reportecita`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `reportecita`  AS  select `tbl_cita`.`CIT_ID` AS `CIT_ID`,`tbl_especialidades`.`EP_DESCRIPCION` AS `EP_DESCRIPCION`,concat(`tbl_medico`.`MED_NOMBRES`,' ',`tbl_medico`.`MED_P_APELLIDO`) AS `Nombres`,concat(`tbl_paciente`.`PAC_NOMBRES`,' ',`tbl_paciente`.`PAC_P_APELLIDO`) AS `NombresP`,cast(`tbl_cita`.`start` as date) AS `start` from (((`tbl_cita` join `tbl_medico` on(`tbl_cita`.`MED_ID` = `tbl_medico`.`MED_ID`)) join `tbl_especialidades` on(`tbl_cita`.`ESP_ID` = `tbl_especialidades`.`ESP_ID`)) join `tbl_paciente` on(`tbl_cita`.`PAC_ID` = `tbl_paciente`.`PAC_ID`)) ;
 
 --
 -- Índices para tablas volcadas
@@ -355,7 +422,7 @@ ALTER TABLE `tbl_canton`
 -- AUTO_INCREMENT de la tabla `tbl_cita`
 --
 ALTER TABLE `tbl_cita`
-  MODIFY `CIT_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `CIT_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_empresa`
@@ -367,25 +434,25 @@ ALTER TABLE `tbl_empresa`
 -- AUTO_INCREMENT de la tabla `tbl_especialidades`
 --
 ALTER TABLE `tbl_especialidades`
-  MODIFY `ESP_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ESP_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_horario`
 --
 ALTER TABLE `tbl_horario`
-  MODIFY `HOR_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `HOR_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_medico`
 --
 ALTER TABLE `tbl_medico`
-  MODIFY `MED_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `MED_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_paciente`
 --
 ALTER TABLE `tbl_paciente`
-  MODIFY `PAC_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `PAC_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_parroquia`
@@ -415,7 +482,7 @@ ALTER TABLE `tbl_sucursal`
 -- AUTO_INCREMENT de la tabla `tbl_usuario`
 --
 ALTER TABLE `tbl_usuario`
-  MODIFY `USU_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `USU_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas

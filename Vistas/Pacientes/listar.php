@@ -6,9 +6,9 @@ include '../../plantilla/header.php';
 <!doctype html>
 <html lang="en">
 
-<head>      
+<head>
     <link href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo SERVERURL?>sweetalert/sweetalert2.min.css" rel="stylesheet">
+    <link href="<?php echo SERVERURL ?>sweetalert/sweetalert2.min.css" rel="stylesheet">
 
     <title>Pacientes</title>
 
@@ -25,16 +25,16 @@ include '../../plantilla/header.php';
         }
 
         .mensaje {
-	
-    font-family: Berlin Sans FB Demi;
-      padding:5px;
-      color:#00aae4;
-      border-radius:5px;
-      text-align: left;
-      font-size: 2.5em;
-      margin-bottom: 5px;
-    
-  } 
+
+            font-family: Berlin Sans FB Demi;
+            padding: 5px;
+            color: #00aae4;
+            border-radius: 5px;
+            text-align: left;
+            font-size: 2.5em;
+            margin-bottom: 5px;
+
+        }
     </style>
 
 </head>
@@ -62,31 +62,17 @@ include '../../plantilla/header.php';
             <div class="x_content">
                 <div class="row">
                     <div class="col-sm-12">
-                       <!--  <b> Mostrar / Ocultar Columnas: </b>
-                         <a class="showHideColumn" data-columindex="0">Nombres</a> -
-                        <a class="showHideColumn" data-columindex="1">Apellido Paterno</a> -
-                        <a class="showHideColumn" data-columindex="2">Apellido Materno</a> -
-                        <a class="showHideColumn" data-columindex="3">Tipo de Documento</a> -
-                        <a class="showHideColumn" data-columindex="4">Documento de Identidad</a> -
-                        <a class="showHideColumn" data-columindex="5">Especialidad</a> -
-                        <a class="showHideColumn" data-columindex="6">Género</a> -
-                        <a class="showHideColumn" data-columindex="7">Fecha de Nacimiento</a> -
-                        <a class="showHideColumn" data-columindex="8">Dirección</a> -
-                        <a class="showHideColumn" data-columindex="9">Correo Electrónico</a> -
-                        <a class="showHideColumn" data-columindex="10">Teléfono</a> -
-                        <a class="showHideColumn" data-columindex="11">Estado</a>
-                        <br>-->
                         <div class="card-box table-responsive">
                             <table id="tabla" class="table table-striped table-bordered dt-responsive nowrap contenido" style="width:100% ;">
 
                                 <thead>
                                     <tr>
-                                        
+
                                         <th scope="col">Nombres</th>
                                         <th scope="col">Apellido Paterno</th>
                                         <th scope="col">Apellido Materno</th>
                                         <th scope="col">Tipo de Documento</th>
-                                        <th scope="col">Documento de Identidad</th>                                       
+                                        <th scope="col">Documento de Identidad</th>
                                         <th scope="col">Género</th>
                                         <th scope="col">Fecha de Nacimiento</th>
                                         <th scope="col">Dirección</th>
@@ -106,21 +92,21 @@ include '../../plantilla/header.php';
             </div>
         </div>
     </div>
-    <script src="<?php echo SERVERURL?>sweetalert/sweetalert2.all.min.js"></script>
-    <script src="<?php echo SERVERURL?>jquery/jquery.min.js"></script>
+    <script src="<?php echo SERVERURL ?>sweetalert/sweetalert2.all.min.js"></script>
+    <script src="<?php echo SERVERURL ?>jquery/jquery.min.js"></script>
     <script>
         //llamamos al ID de la tabla para usar DataTable JQuery
         $(document).ready(function() {
             let datatableInstance = $('#tabla').DataTable({
                 // cargamos los datos Json con ajax 
                 "ajax": {
-                    "url": "<?php echo SERVERURL?>Controlador/Paciente/listar.php",
+                    "url": "<?php echo SERVERURL ?>Controlador/Paciente/listar.php",
                 },
-                "columnDefs": [
-        {"className": "dt-center", "targets": "_all"}
-      ],
-                "columns": [
-                    {
+                "columnDefs": [{
+                    "className": "dt-center",
+                    "targets": "_all"
+                }],
+                "columns": [{
                         "data": "PAC_NOMBRES"
                     },
                     {
@@ -129,13 +115,13 @@ include '../../plantilla/header.php';
                     {
                         "data": "PAC_S_APELLIDO"
                     },
-                    
+
                     {
                         "data": "PAC_TIPO_DNI"
                     },
                     {
                         "data": "PAC_DNI"
-                    },                    
+                    },
                     {
                         "data": "PAC_GENERO"
                     },
@@ -156,11 +142,11 @@ include '../../plantilla/header.php';
                     },
                     {
                         "defaultContent": " <button type='button' data-toggle='modal' data-target='#EditarPacienteModal' class='edit btn btn-info btn-sm ' title='Editar'><i class='fa fa-pencil-square-o' aria-hidden='true'></i> Editar </button>  <button type='button' data-toggle='modal' data-target='#EliminarPacienteModal'  class='eliminar btn btn-danger btn-sm' title='Eliminar'><i class='fa fa-trash' aria-hidden='true'></i> Eliminar  </button> "
-                   
+
                     }
 
                 ],
-                
+
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
@@ -169,40 +155,10 @@ include '../../plantilla/header.php';
 
             });
 
-
-
-            //Escojemos la clase showHideColumn para mostrar u ocultar las columnas
-            //cuando se haga click 
-         /*   $('.showHideColumn').on('click', function() {
-                var tableColumn = datatableInstance.column($(this).attr('data-columindex'));
-                tableColumn.visible(!tableColumn.visible());
-            });*/
-
-
-            //Llamamos a la funcion grabar
-
-
-            $("#btnGuardarPaciente").on("click", function() {
-                input = $(".nombres").val();
-                input2 = $(".P_Apellido").val();
-                if (input.length == 0 || input2.length == 0) {
-                    Swal.fire({
-                        title: 'Oops',
-                        icon: 'warning',
-                        text: 'Todos los campos son requeridos',
-                        showCloseButton: true
-                        
-                    })
-                    // alert("Todos los campos son requeridos")
-                } else {
-                    grabar();
-                }
-            })
-
             $("#btnEditarPaciente").on("click", function(e) {
                 e.preventDefault();
                 actualizar();
-               
+
 
             })
 
@@ -230,7 +186,7 @@ include '../../plantilla/header.php';
                     nombresP = $("#EnombresP").val(data.PAC_NOMBRES),
                     P_ApellidoP = $("#EP_ApellidoP").val(data.PAC_P_APELLIDO),
                     S_ApellidoP = $("#ES_ApellidoP").val(data.PAC_S_APELLIDO),
-                    generoP = $("#genero_valP ").val(data.PAC_GENERO).html(data.PAC_GENERO),                    
+                    generoP = $("#genero_valP ").val(data.PAC_GENERO).html(data.PAC_GENERO),
                     t_dniP = $("#E_t_dniP ").val(data.PAC_TIPO_DNI).html(data.PAC_TIPO_DNI),
                     dnP = $("#EdniP").val(data.PAC_DNI),
                     f_naciP = $("#Ef_naciP").val(data.PAC_FECHA_NAC),
@@ -246,25 +202,129 @@ include '../../plantilla/header.php';
                 var data = datatableInstance.row($(this).parents('tr')).data();
                 // console.log(data);             
                 let idPac = $("#formEliminarPaciente #idPacienteEl").val(data.PAC_ID)
-                    
+
 
             });
         }
+
+        //Llamamos a la funcion grabar
+
+
+        function validarFormularioPac() {
+
+            //Referenciamos que formulario vamos a validarS
+            let FormularioPac = document.formuPaciente;
+
+            //Preguntamos si cada campo esta vacio que nos alerte que el campo es requerido caso contrario se dirigira a la funcion grabar
+            if (FormularioPac.nombresP.value === "") {
+                Swal.fire({
+                    title: 'Todos los campos son requeridos',
+                    icon: 'warning',
+                    text: 'Ingrese un nombre',
+                    showCloseButton: true
+
+                })
+            } else if (FormularioPac.P_ApellidoP.value === "") {
+                Swal.fire({
+                    title: 'Todos los campos son requeridos',
+                    icon: 'warning',
+                    text: 'Ingrese su apellido paterno',
+                    showCloseButton: true
+
+                })
+            } else if (FormularioPac.S_ApellidoP.value === "") {
+                Swal.fire({
+                    title: 'Todos los campos son requeridos',
+                    icon: 'warning',
+                    text: 'Ingrese su apellido materno ',
+                    showCloseButton: true
+
+                })
+
+            } else if (FormularioPac.generoP.value === "") {
+                Swal.fire({
+                    title: 'Todos los campos son requeridos',
+                    icon: 'warning',
+                    text: 'Seleccione un género ',
+                    showCloseButton: true
+
+                })
+
+            } else if (FormularioPac.t_dniP.value === "") {
+                Swal.fire({
+                    title: 'Todos los campos son requeridos',
+                    icon: 'warning',
+                    text: 'Seleccione un tipo de documento de identidad',
+                    showCloseButton: true
+
+                })
+
+            } else if (FormularioPac.dniP.value === "") {
+                Swal.fire({
+                    title: 'Todos los campos son requeridos',
+                    icon: 'warning',
+                    text: 'Ingrese su número de documento',
+                    showCloseButton: true
+
+                })
+
+            } else if (FormularioPac.f_naciP.value === "") {
+                Swal.fire({
+                    title: 'Todos los campos son requeridos',
+                    icon: 'warning',
+                    text: 'Ingrese su fecha de nacimiento',
+                    showCloseButton: true
+
+                })
+
+            } else if (FormularioPac.correoP.value === "") {
+                Swal.fire({
+                    title: 'Todos los campos son requeridos',
+                    icon: 'warning',
+                    text: 'Ingrese su correo electrónico',
+                    showCloseButton: true
+
+                })
+
+            } else if (FormularioPac.telefP.value === "") {
+                Swal.fire({
+                    title: 'Todos los campos son requeridos',
+                    icon: 'warning',
+                    text: 'Ingrese un número de teléfono',
+                    showCloseButton: true
+
+                })
+
+            } else if (FormularioPac.dirP.value === "") {
+                Swal.fire({
+                    title: 'Todos los campos son requeridos',
+                    icon: 'warning',
+                    text: 'Ingrese su dirección domiciliaria',
+                    showCloseButton: true
+
+                })
+
+            } else {
+                grabar();
+            }
+
+        }
+
         //Funcion para verificar que la variable rs retorne true
         let grabar = function() {
-            let url = "<?php echo SERVERURL?>Controlador/Paciente/ControladorPaciente.php";
+            let url = "<?php echo SERVERURL ?>Controlador/Paciente/ControladorPaciente.php";
             let dataform = $("#formPaciente").serialize();
             dataform = "accion=insertar&" + dataform;
             $.post(url, dataform).done((rs) => {
                 console.log(rs)
-                if (rs.success == true) {                 
+                if (rs.success == true) {
                     // alert("Registro guardado")                   
                     $("#AgregarPacienteModal").modal("hide");
                     Swal.fire(
                         'Correcto!',
                         'Registro guardado!',
                         'success'
-                    );                   
+                    );
                     $(".input").val("");
                     $('.dataTable').DataTable().ajax.reload(null, false);
 
@@ -277,20 +337,20 @@ include '../../plantilla/header.php';
         }
 
         let actualizar = function() {
-            let urlE = "<?php echo SERVERURL?>Controlador/Paciente/ControladorPaciente.php";
+            let urlE = "<?php echo SERVERURL ?>Controlador/Paciente/ControladorPaciente.php";
             let dataformEd = $("#formEditarPaciente").serialize();
             dataformEd = "accion=actualizar&" + dataformEd;
             $.post(urlE, dataformEd).done((rsu) => {
                 console.log(rsu)
                 if (rsu.success == true) {
-                   // alert("Registro Modificado")
-                  
+                    // alert("Registro Modificado")
+
                     $("#EditarPacienteModal").modal('hide');
                     Swal.fire(
                         'Correcto!',
                         'Registro Modificado!',
                         'success'
-                    ); 
+                    );
                     //location.reload();
                     $('.dataTable').DataTable().ajax.reload(null, false);
                     console.log(rsu.success)
@@ -302,30 +362,30 @@ include '../../plantilla/header.php';
         }
 
         let eliminar = function() {
-            let urlEl = "<?php echo SERVERURL?>Controlador/Paciente/ControladorPaciente.php";
+            let urlEl = "<?php echo SERVERURL ?>Controlador/Paciente/ControladorPaciente.php";
             let dataformEl = $("#formEliminarPaciente").serialize();
             dataformEl = "accion=eliminar&" + dataformEl;
             $.post(urlEl, dataformEl).done((rse) => {
                 console.log(rse)
                 if (rse.success == true) {
                     console.log(rse.success)
-                   // alert("Registro Elimiando")
+                    // alert("Registro Elimiando")
                     $("#EliminarPacienteModal").modal("hide");
                     Swal.fire(
                         'Correcto!',
                         'Registro Eliminado!',
                         'success'
-                    ); 
+                    );
                     $('.dataTable').DataTable().ajax.reload(null, false);
                 } else {
                     console.log(rse.mensaje)
                     $("#EliminarPacienteModal").modal("hide");
-                   
-                   Swal.fire(
-                       'Oops!',
-                       'No se pudo eliminar su registro existen dependencias',
-                       'error'
-                   ); 
+
+                    Swal.fire(
+                        'Oops!',
+                        'No se pudo eliminar su registro existen dependencias',
+                        'error'
+                    );
                 }
             })
         }
