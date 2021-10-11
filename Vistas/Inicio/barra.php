@@ -11,6 +11,8 @@ $fecha_actual = $Object->format("Y");
 
 // consulta del mes de enero
 
+echo $fecha_actual;
+
 $desdee = $fecha_actual.'-01-00 00:00:00';
 $hastae = $fecha_actual.'-01-31 11:59:00';
 $sql = "select COUNT(*) from tbl_cita where start between '$desdee' and '$hastae'";
@@ -74,20 +76,20 @@ $result = $co->query($sql);//$pdo sería el objeto conexión
 $semptiembre = $result->fetchColumn();
 // octubre
 
-$desdes = $fecha_actual.'-10-00 00:00:00';
+$desdeo = $fecha_actual.'-10-00 00:00:00';
 $hastao = $fecha_actual.'-10-31 11:59:00';
-$sql = "select COUNT(*) from tbl_cita where start between '$desdes' and '$hastao'";
+$sql = "select COUNT(*) from tbl_cita where start between '$desdeo' and '$hastao'";
 $result = $co->query($sql);//$pdo sería el objeto conexión
 $octubre = $result->fetchColumn();
-// noviembre
 
+// noviembre
 $desden = $fecha_actual.'-11-00 00:00:00';
 $hastan = $fecha_actual.'-11-30 11:59:00';
 $sql = "select COUNT(*) from tbl_cita where start between '$desden' and '$hastan'";
 $result = $co->query($sql);//$pdo sería el objeto conexión
 $noviembre = $result->fetchColumn();
-// diciembre
 
+// diciembre
 $desded = $fecha_actual.'-12-00 00:00:00';
 $hastad = $fecha_actual.'-12-31 11:59:00';
 $sql = "select COUNT(*) from tbl_cita where start between '$desded' and '$hastad'";

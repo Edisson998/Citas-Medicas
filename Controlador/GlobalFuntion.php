@@ -4,6 +4,8 @@
 
         $host = $_SERVER['HTTP_HOST'];
         
-        const SERVERURL= "http://localhost/CitasMedicas/";
+        //Colocar como aparece en el navegador
+        const SERVERURL= "https://azcitasmedicas.azurewebsites.net/";
 
 
+        https://azcitasmedicas.azurewebsites.net
