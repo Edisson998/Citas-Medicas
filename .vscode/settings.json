@@ -1,4 +1,4 @@
 {
     "appService.deploySubpath": ".",
-    "appService.defaultWebAppToDeploy": ""
+    "appService.defaultWebAppToDeploy": "/subscriptions/5b43748b-6fe5-412e-95ed-d56873653592/resourceGroups/Pruebas/providers/Microsoft.Web/sites/azcitasmedicas"
 }
