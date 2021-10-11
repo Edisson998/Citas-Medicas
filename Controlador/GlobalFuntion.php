@@ -8,4 +8,4 @@
         const SERVERURL= "https://azcitasmedicas.azurewebsites.net/";
 
 
-        https://azcitasmedicas.azurewebsites.net
+    
