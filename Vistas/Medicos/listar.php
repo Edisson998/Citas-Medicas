@@ -8,7 +8,7 @@ include '../../plantilla/header.php';
 
 <head>    
     <link href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo SERVERURL ?>sweetalert/sweetalert2.min.css" rel="stylesheet">
+    <link href="../../sweetalert/sweetalert2.min.css" rel="stylesheet">
 
     <title>Médicos</title>
 
@@ -61,7 +61,7 @@ include '../../plantilla/header.php';
             <div class="x_content">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="card-box table-responsive">
+                        <div class="card-box ">
                             <table id="tabla" class="table table-striped table-bordered dt-responsive nowrap contenido" style="width:100% ;">
 
                                 <thead>
@@ -92,15 +92,15 @@ include '../../plantilla/header.php';
             </div>
         </div>
     </div>
-    <script src="<?php echo SERVERURL ?>sweetalert/sweetalert2.all.min.js"></script>
-    <script src="<?php echo SERVERURL ?>jquery/jquery.min.js"></script>
+    <script src="../../sweetalert/sweetalert2.all.min.js"></script>
+    <script src="../../jquery/jquery.min.js"></script>
     <script>
         //llamamos al ID de la tabla para usar DataTable JQuery
         $(document).ready(function() {
             let datatableInstance = $('#tabla').DataTable({
                 // cargamos los datos consumiendo el Json con ajax 
                 "ajax": {
-                    "url": "<?php echo SERVERURL ?>Controlador/Medico/listar.php",
+                    "url": "../../Controlador/Medico/listar.php",
                 },
                 "columnDefs": [{
                     "className": "dt-center",
@@ -321,7 +321,7 @@ include '../../plantilla/header.php';
         }
         //Funcion para verificar que la variable rs retorne true
         let grabar = function() {
-            let url = "<?php echo SERVERURL ?>Controlador/Medico/ControladorMedico.php";
+            let url = "../../Controlador/Medico/ControladorMedico.php";
             let dataform = $("#formMedico").serialize();
             dataform = "accion=insertar&" + dataform;
             $.post(url, dataform).done((rs) => {
@@ -346,7 +346,7 @@ include '../../plantilla/header.php';
         }
 
         let actualizar = function() {
-            let urlE = "<?php echo SERVERURL ?>Controlador/Medico/ControladorMedico.php";
+            let urlE = "../../Controlador/Medico/ControladorMedico.php";
             let dataformEd = $("#formEditarMedico").serialize();
             dataformEd = "accion=actualizar&" + dataformEd;
             $.post(urlE, dataformEd).done((rsu) => {
@@ -371,7 +371,7 @@ include '../../plantilla/header.php';
         }
 
         let eliminar = function() {
-            let urlEl = "<?php echo SERVERURL ?>Controlador/Medico/ControladorMedico.php";
+            let urlEl = "../../Controlador/Medico/ControladorMedico.php";
             let dataformEl = $("#formEliminarMedico").serialize();
             dataformEl = "accion=eliminar&" + dataformEl;
             $.post(urlEl, dataformEl).done((rse) => {

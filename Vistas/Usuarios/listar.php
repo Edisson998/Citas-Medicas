@@ -13,7 +13,7 @@ include '../../plantilla/header.php';
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo SERVERURL ?>sweetalert/sweetalert2.min.css" rel="stylesheet">
+    <link href="../../sweetalert/sweetalert2.min.css" rel="stylesheet">
 
     <title>Usuarios</title>
 
@@ -94,15 +94,15 @@ include '../../plantilla/header.php';
             </div>
         </div>
     </div>
-    <script src="<?php echo SERVERURL ?>sweetalert/sweetalert2.all.min.js"></script>
-    <script src="<?php echo SERVERURL ?>jquery/jquery.min.js"></script>
+    <script src="../../sweetalert/sweetalert2.all.min.js"></script>
+    <script src="../../jquery/jquery.min.js"></script>
     <script>
         //llamamos al ID de la tabla para usar DataTable JQuery
         $(document).ready(function() {
             let datatableInstance = $('#tabla').DataTable({
                 // cargamos los datos consumiendo el Json con ajax 
                 "ajax": {
-                    "url": "<?php echo SERVERURL ?>Controlador/Usuario/listar.php",
+                    "url": "../../Controlador/Usuario/listar.php",
                 },
                 "columnDefs": [{
                     "className": "dt-center",
@@ -262,7 +262,7 @@ include '../../plantilla/header.php';
 
         //Funcion para verificar que la variable rs retorne true
         let grabar = function() {
-            let url = "<?php echo SERVERURL ?>Controlador/Usuario/ControladorUsuario.php";
+            let url = "../../Controlador/Usuario/ControladorUsuario.php";
             let dataform = $("#formUsuario").serialize();
             dataform = "accion=insertar&" + dataform;
             $.post(url, dataform).done((rs) => {
@@ -287,7 +287,7 @@ include '../../plantilla/header.php';
         }
 
         let actualizar = function() {
-            let urlE = "<?php echo SERVERURL ?>Controlador/Usuario/ControladorUsuario.php";
+            let urlE = "../../Controlador/Usuario/ControladorUsuario.php";
             let dataformEd = $("#formEditarUsuario").serialize();
             dataformEd = "accion=actualizar&" + dataformEd;
             $.post(urlE, dataformEd).done((rsu) => {
@@ -312,7 +312,7 @@ include '../../plantilla/header.php';
         }
 
         let eliminar = function() {
-            let urlEl = "<?php echo SERVERURL ?>Controlador/Usuario/ControladorUsuario.php";
+            let urlEl = "../../Controlador/Usuario/ControladorUsuario.php";
             let dataformEl = $("#formEliminarUsuario").serialize();
             dataformEl = "accion=eliminar&" + dataformEl;
             $.post(urlEl, dataformEl).done((rse) => {

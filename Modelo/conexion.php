@@ -4,10 +4,10 @@ class Conexion{
     
 
     Public function Conectar(){
-        define('servidor','azcitasmedicas.mysql.database.azure.com');
-        define('nombre_bd','citasmedicas');
-        define('usuario','azadmin@azcitasmedicas');
-        define('password','Efnc@1726');
+        define('servidor','az-bd-facelect.mysql.database.azure.com');
+        define('nombre_bd','az-citasmedicas');
+        define('usuario','vmadmin@az-bd-facelect');
+        define('password','1750871863Ale');
 
         try {
             $conectar = $this->dbh = new PDO("mysql:host=".servidor.";charset=utf8;dbname=".nombre_bd,usuario, password) ;
