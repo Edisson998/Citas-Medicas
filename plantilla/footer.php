@@ -13,7 +13,10 @@
 </div>
 </div>
 
+<script>
 
+  const baseUrl = "<?= SERVERURL ?>"
+</script>
 <!-- jQuery -->
 <script src="../../Complementos_Plantilla/vendors/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap -->

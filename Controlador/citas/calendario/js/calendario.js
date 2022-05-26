@@ -31,7 +31,7 @@ $(document).ready(function() {
         //events es un conjunto de datos que esta en un arreglo
         //Listamos los eventos disponibles a traves de un Json
        
-        events: "https://az-citasmedicas.azurewebsites.net/Controlador/citas/calendario/listar.php",
+        events: baseUrl+'Controlador/citas/calendario/listar.php',
 
 
 
